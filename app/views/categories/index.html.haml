@@ -1,25 +1,27 @@
-%h1 Listing categories
+%h1.h2
+  Categories
+  = link_to 'New Category', new_category_path, class: 'btn btn-primary float-right'
 
-%table
-  %thead
-    %tr
-      %th Title
-      %th Description
-      %th Slug
-      %th
-      %th
-      %th
-
-  %tbody
-    - @categories.each do |category|
+.table-responsive
+  %table.table.table-striped.table-sm
+    %thead
       %tr
-        %td= category.title
-        %td= category.description
-        %td= category.slug
-        %td= link_to 'Show', category
-        %td= link_to 'Edit', edit_category_path(category)
-        %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
+        %th Title
+        %th Description
+        %th Slug
+        %th
+        %th
+        %th
+
+    %tbody
+      - @categories.each do |category|
+        %tr
+          %td= category.title
+          %td= category.description
+          %td= category.slug
+          %td= link_to 'Show', category
+          %td= link_to 'Edit', edit_category_path(category)
+          %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
-
-= link_to 'New Category', new_category_path
+%br
