@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Get Radio Categories
+dirble = Dirble.new(ENV['DIRBLE_TOKEN'])
+categories = dirble.categories
+categories.each do |category|
+  category.symbolize_keys!
+  category.delete(:ancestry)
+  Category.where(category).first_or_create
+end
