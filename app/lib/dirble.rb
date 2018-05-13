@@ -38,7 +38,7 @@ class Dirble
   end
 
   def categories
-    url = '/categories/primary'
+    url = '/categories'
     process_request(url)
   end
 

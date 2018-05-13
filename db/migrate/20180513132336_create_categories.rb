@@ -4,6 +4,7 @@ class CreateCategories < ActiveRecord::Migration[5.2]
       t.string :title
       t.string :description
       t.string :slug
+      t.string :ancestry
 
       t.timestamps
     end
