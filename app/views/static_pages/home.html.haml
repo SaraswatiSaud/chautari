@@ -2,39 +2,15 @@
   %h1.display-4 Welcome to Chautari
   %p.lead Your one stop solution for local online media. Listen to radio and watch tv from around the globe.
 
-.container.mb-3
+.mb-3
   .col-md-6.offset-md-3
-    .input-group.mb-4
-      = text_field_tag :search, '', class: 'form-control', placeholder: 'Enter Radio station or TV name...'
-      .input-group-append
-        = button_tag 'Search', class: 'btn btn-primary'
+    = form_tag search_path, remote: true do
+      .input-group.mb-4
+        = text_field_tag :query, params[:query], autocomplete: 'off', class: 'form-control', placeholder: 'Enter Radio station or TV name...'
+        .input-group-append
+          = button_tag 'Search', class: 'btn btn-primary'
 
-.container
-  .mb-3 &nbsp;
-  .card-deck.mb-3.text-center
-    .card.mb-4.box-shadow
-      .card-header
-        %h4.my-0.font-weight-normal Classic FM
-      .card-body
-        .mb-4
-          %h1.card-title 100 MHz
-          %small.text-muted Nepal / Kathmandu
-        = button_tag 'Listen Now', class: 'btn btn-block btn-primary'
-
-    .card.mb-4.box-shadow
-      .card-header
-        %h4.my-0.font-weight-normal Hits FM
-      .card-body
-        .mb-4
-          %h1.card-title 91.2 MHz
-          %small.text-muted Nepal / Kathmandu
-        = button_tag 'Listen Now', class: 'btn btn-block btn-primary'
-
-    .card.mb-4.box-shadow
-      .card-header
-        %h4.my-0.font-weight-normal Sagarmatha FM
-      .card-body
-        .mb-4
-          %h1.card-title 108.4 MHz
-          %small.text-muted Nepal / Kathmandu
-        = button_tag 'Listen Now', class: 'btn btn-block btn-primary'
+.mb-3
+  &nbsp;
+  .spinner
+#stations_list.row= render @stations
