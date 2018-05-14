@@ -10,10 +10,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_04_012550) do
+ActiveRecord::Schema.define(version: 2018_05_13_144203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.string "slug"
+    t.string "ancestry"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories_stations", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "station_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_categories_stations_on_category_id"
+    t.index ["station_id"], name: "index_categories_stations_on_station_id"
+  end
+
+  create_table "stations", force: :cascade do |t|
+    t.string "name"
+    t.string "country"
+    t.string "slug"
+    t.string "logo"
+    t.string "website"
+    t.string "twitter"
+    t.string "facebook"
+    t.string "total_listeners"
+    t.jsonb "settings"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "streams", force: :cascade do |t|
+    t.bigint "station_id"
+    t.string "url"
+    t.integer "bitrate"
+    t.string "content_type"
+    t.integer "status"
+    t.integer "listeners"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["station_id"], name: "index_streams_on_station_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,4 +76,7 @@ ActiveRecord::Schema.define(version: 2018_05_04_012550) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "categories_stations", "categories"
+  add_foreign_key "categories_stations", "stations"
+  add_foreign_key "streams", "stations"
 end

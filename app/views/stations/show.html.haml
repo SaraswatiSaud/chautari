@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @station.name
+%p
+  %b Country:
+  = @station.country
+%p
+  %b Slug:
+  = @station.slug
+%p
+  %b Logo:
+  = @station.logo
+%p
+  %b Website:
+  = @station.website
+%p
+  %b Twitter:
+  = @station.twitter
+%p
+  %b Facebook:
+  = @station.facebook
+%p
+  %b Total listeners:
+  = @station.total_listeners
+
+= link_to 'Edit', edit_station_path(@station)
+\|
+= link_to 'Back', stations_path
