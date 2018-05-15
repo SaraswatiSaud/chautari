@@ -4,3 +4,7 @@
     = link_to 'Listen Radio', '#', class: 'p-2 text-dark'
     = link_to 'Watch TV', '#', class: 'p-2 text-dark'
     = link_to 'Search', '#', class: 'p-2 text-dark'
+    %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+    .dropdown-menu
+      .dropdown-item= link_to 'Log in', new_user_session_path, class: 'nav-link'
+      .dropdown-item= link_to 'Sign up', new_user_registration_path, class: 'nav-link'
