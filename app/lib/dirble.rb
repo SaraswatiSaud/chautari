@@ -28,13 +28,13 @@ class Dirble
 
   def station(id)
     return unless id.present?
-    url = '/stations/' + id
+    url = '/station/' + id.to_s
     process_request(url)
   end
 
   def similar_stations(id)
     return unless id.present?
-    url = '/stations' + id + '/similar'
+    url = '/stations' + id.to_s + '/similar'
     process_request(url)
   end
 
@@ -45,7 +45,7 @@ class Dirble
 
   def category_stations(id)
     return unless id.present?
-    url = '/category/' + id + '/stations'
+    url = '/category/' + id.to_s + '/stations'
     process_request(url)
   end
 
