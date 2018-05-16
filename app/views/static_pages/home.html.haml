@@ -13,4 +13,8 @@
 .mb-3
   &nbsp;
   .spinner
-#stations_list.row= render @stations
+#stations_list.row
+  - if @stations.present?
+    = render @stations
+  - else
+    %p No stations found. Please review your search query.
