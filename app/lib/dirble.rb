@@ -1,5 +1,5 @@
 # dirble = Dirble.new('e425f14053b0eff05fdc1624e0')
-# stations = dirble.stations
+# stations = dirble.stations(1, 30)
 
 class Dirble
   attr_reader :token
@@ -10,9 +10,10 @@ class Dirble
     @token = token
   end
 
-  def stations
+  def stations(page = 1, per_page = 30)
     url = '/stations'
-    process_request(url)
+    options = { page: page, per_page: per_page }
+    process_request(url, options)
   end
 
   def recent_stations
@@ -60,7 +61,9 @@ class Dirble
   private
 
   def process_request(url, options = {}, method = 'get')
-    url = url + '?token=' + token
+    url += '?token=' + token
+    url += "&page=#{options[:page]}" if options[:page].present?
+    url += "&per_page=#{options[:per_page]}" if options[:per_page].present?
     get_response(url, options, method).parsed_response
   end
 

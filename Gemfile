@@ -60,7 +60,7 @@ gem 'jquery-rails'
 gem 'httparty'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
-gem 'jplayer-rails'
+gem 'kaminari'
 
 group :development do
     gem 'capistrano',         require: false

@@ -1,0 +1,5 @@
+- if @stations.present?
+  = render @stations
+  = paginate @stations, remote: true
+- else
+  %p No stations found. Please review your search query.

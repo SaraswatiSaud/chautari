@@ -4,17 +4,13 @@
 
 .mb-3
   .col-md-6.offset-md-3
-    = form_tag search_path, remote: true do
+    = form_tag root_path, method: :get, remote: true do
       .input-group.mb-4
-        = text_field_tag :query, params[:query], autocomplete: 'off', class: 'form-control', placeholder: 'Enter Radio station or TV name...'
+        = text_field_tag :query, session[:query], autocomplete: 'off', class: 'form-control', placeholder: 'Enter Radio station or TV name...'
         .input-group-append
           = button_tag 'Search', class: 'btn btn-primary'
 
 .mb-3
   &nbsp;
   .spinner
-#stations_list.row
-  - if @stations.present?
-    = render @stations
-  - else
-    %p No stations found. Please review your search query.
+#stations_list.row= render 'stations/list'

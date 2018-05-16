@@ -1,6 +1,9 @@
 class StaticPagesController < ApplicationController
   def home
-    @stations = Station.distinct.joins(:streams).order(id: :desc).limit(12)
+    session[:query] = params[:query] if params[:query]
+    @stations = Station.distinct.joins(:streams).order(id: :desc)
+    @stations = @stations.where("name ILIKE '%#{session[:query]}%'") if session[:query].present?
+    @stations = @stations.page(params[:page])
   end
 
   def contact
@@ -13,9 +16,5 @@ class StaticPagesController < ApplicationController
   end
 
   def privacy_policy
-  end
-
-  def search
-    @stations = Station.distinct.joins(:streams).where("name ILIKE '%#{params[:query]}%'").order(id: :desc).limit(12)
   end
 end

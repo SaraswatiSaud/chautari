@@ -4,7 +4,7 @@
   %h1.h2 Station Info
   .btn-toolbar.mb-2.mb-md-0
     = link_to 'Edit', edit_station_path(@station), class: 'btn btn-default'
-    = link_to '< Back', stations_path, class: 'btn btn-default'
+    = link_to '< Back', root_path(query: session[:query]), class: 'btn btn-default'
 
 .row
   .col-md-2
@@ -20,6 +20,9 @@
 
     - if @station.streams.any?
       - stream = @station.streams.first
+      // :javascript
+      //   const audio = new Audio('#{stream.url}');
+      //   audio.play();
       %audio{controls: true, class: 'border'}
         %source{src: stream.url, type: stream.content_type}
         Your browser does not support the audio element.
