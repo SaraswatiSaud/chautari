@@ -20,3 +20,6 @@
 /public/uploads
 /test
 /config/env.yml
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
