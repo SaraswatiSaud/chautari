@@ -1,3 +1,7 @@
 %footer.footer
-  .container
+  .container.d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center
     Copyright &copy; #{Date.today.year}, All Rights Reserved.
+    %div
+      = link_to 'FAQ', faq_path, class: 'p-2 text-dark'
+      \|
+      = link_to 'Privacy Policy', privacy_policy_path, class: 'p-2 text-dark'

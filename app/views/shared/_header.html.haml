@@ -1,9 +1,9 @@
 .d-flex.flex-column.flex-md-row.align-items-center.p-3.px-md-4.mb-3.bg-white.border-bottom.box-shadow
   %h5.my-0.mr-md-auto.font-weight-normal= link_to 'Chautari', root_path, class: 'navbar-brand'
   %nav.my-2.my-md-0.mr-md-3
-    = link_to 'Listen Radio', '#', class: 'p-2 text-dark'
-    = link_to 'Watch TV', '#', class: 'p-2 text-dark'
-    = link_to 'Search', '#', class: 'p-2 text-dark'
+    = link_to 'Home', root_path, class: 'p-2 text-dark'
+    = link_to 'About Us', about_path, class: 'p-2 text-dark'
+    = link_to 'Contact', contact_path, class: 'p-2 text-dark'
     %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
     .dropdown-menu
       .dropdown-item= link_to 'Log in', new_user_session_path, class: 'nav-link'
