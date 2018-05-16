@@ -60,3 +60,12 @@ gem 'jquery-rails'
 gem 'httparty'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
+gem 'jplayer-rails'
+
+group :development do
+    gem 'capistrano',         require: false
+    gem 'capistrano-rvm',     require: false
+    gem 'capistrano-rails',   require: false
+    gem 'capistrano-bundler', require: false
+    gem 'capistrano3-puma',   require: false
+end
