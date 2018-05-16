@@ -20,10 +20,7 @@
 
     - if @station.streams.any?
       - stream = @station.streams.first
-      // :javascript
-      //   const audio = new Audio('#{stream.url}');
-      //   audio.play();
-      %audio{controls: true, class: 'border'}
+      %audio{controls: true, id: 'player', preload: 'none', 'data-plyr-config': '{ "invertTime": false }'}
         %source{src: stream.url, type: stream.content_type}
         Your browser does not support the audio element.
 

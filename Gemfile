@@ -61,6 +61,7 @@ gem 'httparty'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'kaminari'
+gem 'plyr-rails'
 
 group :development do
     gem 'capistrano',         require: false
