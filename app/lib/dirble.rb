@@ -28,7 +28,7 @@ class Dirble
 
   def station(id)
     return unless id.present?
-    url = '/stations' + id
+    url = '/stations/' + id
     process_request(url)
   end
 
