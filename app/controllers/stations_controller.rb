@@ -1,10 +1,11 @@
 class StationsController < ApplicationController
+  before_action :authenticate_admin!, except: [:index, :show]
   before_action :set_station, only: [:show, :edit, :update, :destroy]
 
   # GET /stations
   # GET /stations.json
   def index
-    @stations = Station.all
+    @stations = Station.page params[:page]
   end
 
   # GET /stations/1

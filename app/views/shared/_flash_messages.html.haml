@@ -1,0 +1,4 @@
+- flash.map do |key, value|
+  .alert.alert-dismissable{class: "alert-#{key}"}
+    %span.close{'data-dismiss': "alert"} &times;
+    #{value}

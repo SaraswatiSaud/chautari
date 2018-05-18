@@ -10,20 +10,23 @@
         %th Description
         %th Slug
         %th Ancestry
-        %th
-        %th
-        %th
+        - if user_signed_in? && current_user.is_admin?
+          %th
+          %th
 
     %tbody
       - @categories.each do |category|
         %tr
-          %td= category.title
+          %td= link_to category.title, category
           %td= category.description
           %td= category.slug
           %td= category.ancestry
-          %td= link_to 'Show', category
-          %td= link_to 'Edit', edit_category_path(category)
-          %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
+          - if user_signed_in? && current_user.is_admin?
+            %td= link_to 'Edit', edit_category_path(category)
+            %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
+
+      %tr
+        %td.pt-3{colspan: 6}= paginate @categories
 
 %br
 %br
