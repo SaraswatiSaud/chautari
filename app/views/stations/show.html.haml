@@ -5,9 +5,7 @@
     = link_to '< Back', root_path, class: 'btn btn-default'
 
 .row
-  .col-md-2
-    - image_url = @station.logo_url || 'image_not_available.png'
-    = image_tag(image_url, class: 'border img-fluid')
+  .col-md-2= image_tag(@station.logo_url, class: 'border img-fluid')
   .col-md-10
     %h5= @station.name
     %p= @station.country

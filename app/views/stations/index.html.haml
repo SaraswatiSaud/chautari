@@ -15,9 +15,7 @@
     %tbody
       - @stations.each do |station|
         %tr
-          %td
-            - image_url = station.logo_url || 'image_not_available.png'
-            = image_tag(image_url, class: 'border-right mr-3', size: '50x50')
+          %td= image_tag(station.logo_url, class: 'border-right mr-3', size: '50x50')
           %td
             %strong= link_to station.name, station
             %div
