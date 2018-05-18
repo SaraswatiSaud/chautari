@@ -1,0 +1,14 @@
+.px-3.py-3.pt-md-5.pb-md-4.mx-auto.text-center
+  %h1.display-4 Welcome to Chautari
+  %p.lead Your one stop solution for local online media. Listen to radio from around the globe.
+
+.mb-3
+  .col-md-6.offset-md-3
+    = form_tag root_path, method: :get, remote: true do
+      .input-group.mb-4
+        = text_field_tag :query, params[:query], autocomplete: 'off', class: 'form-control', placeholder: 'Enter Radio station name...'
+        .input-group-append
+          = button_tag 'Search', class: 'btn btn-primary'
+
+.mb-3 &nbsp;
+#stations_list.row= render 'stations/list'

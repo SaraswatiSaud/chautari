@@ -1,0 +1,35 @@
+.d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pb-2.mb-3.border-bottom
+  %h1.h2 Station Info
+  .btn-toolbar.mb-2.mb-md-0
+    = link_to 'Edit', edit_station_path(@station), class: 'btn btn-default' if user_signed_in? && current_user.is_admin?
+    = link_to '< Back', root_path, remote: true, class: 'btn btn-default'
+
+.row
+  .col-md-2= image_tag(@station.logo_url, class: 'border img-fluid')
+  .col-md-10
+    %h5= @station.name
+    %p= @station.country
+    %p= @station.website if @station.website?
+    %p= @station.twitter if @station.twitter?
+    %p= @station.facebook if @station.facebook?
+    %p= "Total Listeners: #{@station.total_listeners}"
+
+    - if @station.streams.any?
+      - stream = @station.streams.first
+      -# = button_tag 'Stop', class: 'plr-stop'
+      -# :javascript
+      -#   audio = new Audio('#{stream.url}');
+      -#   audio.play();
+
+      = link_to 'Play',  play_station_path(@station), remote: true
+
+      #player1
+      :javascript
+        player = new Plyr(document.getElementById('player'));
+
+      -# %audio{controls: true, id: 'player', preload: 'none', 'data-plyr-config': '{ "invertTime": false }'}
+      -#   %source{src: stream.url, type: stream.content_type}
+      -#   Your browser does not support the audio element.
+
+    - else
+      .text-danger This station doesn't have any streams.

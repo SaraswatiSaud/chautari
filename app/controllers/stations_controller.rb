@@ -1,6 +1,6 @@
 class StationsController < ApplicationController
-  before_action :authenticate_admin!, except: [:show]
-  before_action :set_station, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!, except: [:show, :play, :player_close]
+  before_action :set_station, only: [:show, :edit, :update, :destroy, :play]
 
   # GET /stations
   # GET /stations.json
@@ -60,6 +60,14 @@ class StationsController < ApplicationController
       format.html { redirect_to stations_url, notice: 'Station was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def play
+    session[:stream] = @station.streams.try(:first).try(:attributes)
+  end
+
+  def player_close
+    session[:stream] = nil
   end
 
   private

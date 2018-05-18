@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   get '/faq', to: 'static_pages#faq'
   get '/privacy-policy', to: 'static_pages#privacy_policy'
 
-  resources :stations
+  resources :stations do
+    get 'play', on: :member
+    get 'player_close', on: :collection
+  end
+
   resources :categories
   devise_for :users
 

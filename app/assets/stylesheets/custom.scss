@@ -61,3 +61,12 @@ a:hover { color: #f55c78; text-decoration: none; }
   color: #468847;
   text-align: left;
 }
+
+#player_area {
+  position: fixed;
+  bottom: 60px;
+  right: 20px;
+
+  .text-right { line-height: 30px; }
+  #inner { border: 1px solid; }
+}

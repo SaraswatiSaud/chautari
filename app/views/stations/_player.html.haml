@@ -1,0 +1,20 @@
+- if session[:stream].present?
+  - session[:stream].symbolize_keys!
+  .row
+    .col-md-12.text-right= link_to 'Close', player_close_stations_path, remote: true, class: 'small'
+  #inner
+    %audio{controls: true, id: 'player', preload: 'none', 'data-plyr-config': '{ "invertTime": false }'}
+
+  :javascript
+    player = new Plyr('#player', {
+      controls: ['play-large', 'play', 'current-time', 'mute', 'volume']
+    });
+    player.source = {
+      type: 'audio',
+      title: 'Example title',
+      sources: [{
+        src: "#{session[:stream][:url].strip}",
+        type: "#{session[:stream][:content_type].strip}",
+      }]
+    };
+    player.play();
