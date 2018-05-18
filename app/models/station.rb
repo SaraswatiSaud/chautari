@@ -3,5 +3,5 @@ class Station < ApplicationRecord
   mount_uploader :logo, LogoUploader
 
   has_and_belongs_to_many :categories
-  has_many :streams
+  has_many :streams, dependent: :destroy
 end
