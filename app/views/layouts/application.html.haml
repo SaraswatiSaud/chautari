@@ -6,6 +6,15 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+    / Global site tag (gtag.js) - Google Analytics
+    %script{async: "", src: "https://www.googletagmanager.com/gtag/js?id=UA-119525310-1"}
+    :javascript
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-119525310-1');
+
   %body
     = render 'shared/header'
     %main.container{role: 'main'}
