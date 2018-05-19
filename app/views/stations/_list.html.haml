@@ -1,5 +1,5 @@
 - if @stations.present?
   = render @stations
-  .col-md-12= paginate @stations, remote: true
+  .col-md-12= paginate @stations, window: 1, remote: true
 - else
   %p No stations found. Please review your search query.

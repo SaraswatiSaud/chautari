@@ -9,5 +9,5 @@
       - if user_signed_in?
         .dropdown-item= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link'
       - else
-        .dropdown-item= link_to 'Log in', new_user_session_path, remote: true, class: 'nav-link'
-        .dropdown-item= link_to 'Sign up', new_user_registration_path, remote: true, class: 'nav-link'
+        .dropdown-item= link_to 'Log in', new_user_session_path, class: 'nav-link'
+        .dropdown-item= link_to 'Sign up', new_user_registration_path, class: 'nav-link'
