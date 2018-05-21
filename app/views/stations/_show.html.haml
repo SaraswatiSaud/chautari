@@ -2,7 +2,7 @@
   %h1.h2 Station Info
   .btn-toolbar.mb-2.mb-md-0
     = link_to 'Edit', edit_station_path(@station), class: 'btn btn-default' if user_signed_in? && current_user.is_admin?
-    = link_to '< Back', :back, remote: true, class: 'btn btn-default'
+    = link_to '< Back', root_path, remote: true, class: 'btn btn-default'
 
 .row
   .col-md-2= image_tag(@station.logo_url, class: 'border img-fluid')

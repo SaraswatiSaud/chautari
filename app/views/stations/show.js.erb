@@ -1,1 +1,3 @@
 $('main.container').html("<%=j render 'show' %>");
+history.pushState({turbolinks: true, url: '<%= station_path(@station) %>'}, null, '<%= station_path(@station) %>');
+document.title = '<%= title(@station.name) %>';

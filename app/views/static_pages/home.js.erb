@@ -1,1 +1,3 @@
 $('main.container').html("<%=j render 'home' %>");
+history.pushState({turbolinks: true, url: '<%= root_path %>'}, null, '<%= root_path %>');
+document.title = '<%= title %>';
