@@ -107,6 +107,8 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.23)
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     haml (5.0.4)
@@ -233,6 +235,8 @@ GEM
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
     sexp_processor (4.11.0)
+    sitemap_generator (6.0.1)
+      builder (~> 3.0)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -287,6 +291,7 @@ DEPENDENCIES
   carrierwave (~> 1.0)
   coffee-rails (~> 4.2)
   devise
+  friendly_id (~> 5.1.0)
   haml-rails (~> 1.0)
   httparty
   jbuilder (~> 2.5)
@@ -300,6 +305,7 @@ DEPENDENCIES
   rails (~> 5.2.0)
   sass-rails (~> 5.0)
   selenium-webdriver
+  sitemap_generator
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

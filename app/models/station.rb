@@ -8,4 +8,7 @@ class Station < ApplicationRecord
   has_many :streams, dependent: :destroy
 
   paginates_per 15
+
+  extend FriendlyId
+  friendly_id :name, use: :slugged
 end

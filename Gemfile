@@ -62,6 +62,8 @@ gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'kaminari'
 gem 'plyr-rails'
+gem 'sitemap_generator'
+gem 'friendly_id', '~> 5.1.0'
 
 group :development do
     gem 'capistrano',         require: false
