@@ -1,0 +1,40 @@
+%h1 Stations
+
+.table-responsive
+  %table.table
+    %thead
+      %tr
+        %th{colspan: 2} Name
+        %th Country
+        %th Slug
+        %th Total listeners
+        - if user_signed_in? && current_user.is_admin?
+          %th
+          %th
+
+    %tbody
+      - @stations.each do |station|
+        %tr
+          %td= image_tag(station.logo_url, class: 'border-right mr-3', size: '50x50')
+          %td
+            %strong= link_to station.name, station
+            %div
+              %small= station.website
+              %div
+                - if station.twitter?
+                  = link_to 'Twitter', station.twitter, class: 'btn'
+                - if station.facebook?
+                  = link_to 'Facebook', station.facebook, class: 'btn'
+          %td= station.country
+          %td= station.slug
+          %td= station.total_listeners
+          - if user_signed_in? && current_user.is_admin?
+            %td= link_to 'Edit', edit_station_path(station)
+            %td= link_to 'Destroy', station, method: :delete, data: { confirm: 'Are you sure?' }
+
+      %tr
+        %td.pt-3{colspan: 11}= paginate @stations
+
+%br
+
+= link_to 'New Station', new_station_path

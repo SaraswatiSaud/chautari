@@ -1,16 +1,18 @@
 class StationsController < ApplicationController
-  before_action :authenticate_admin!, except: [:show, :play, :player_close]
+  before_action :authenticate_admin!, except: [:index, :show, :play, :player_close]
   before_action :set_station, only: [:show, :edit, :update, :destroy, :play]
 
   # GET /stations
   # GET /stations.json
   def index
+    @title = 'Radio Stations'
     @stations = Station.page params[:page]
   end
 
   # GET /stations/1
   # GET /stations/1.json
   def show
+    @title = @station.name
   end
 
   # GET /stations/new

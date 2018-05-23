@@ -1,3 +1,3 @@
 $('main.container').html("<%=j render 'contact' %>");
 history.pushState({turbolinks: true, url: '<%= contact_path %>'}, null, '<%= contact_path %>');
-document.title = '<%= title("Contact") %>';
+document.title = '<%= title(@title) %>';

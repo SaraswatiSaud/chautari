@@ -2,7 +2,7 @@
   %h1.h2 Station Info
   .btn-toolbar.mb-2.mb-md-0
     = link_to 'Edit', edit_station_path(@station), class: 'btn btn-default' if user_signed_in? && current_user.is_admin?
-    = link_to '< Back', root_path, remote: true, class: 'btn btn-default'
+    = link_to '< Back', :back, remote: true, class: 'btn btn-default'
 
 .row
   .col-md-2= image_tag(@station.logo_url, class: 'border img-fluid')
@@ -12,7 +12,6 @@
     %p= @station.website if @station.website?
     %p= @station.twitter if @station.twitter?
     %p= @station.facebook if @station.facebook?
-    %p= "Total Listeners: #{@station.total_listeners}"
 
     - if @station.streams.any?
       - stream = @station.streams.first
@@ -21,7 +20,7 @@
       -#   audio = new Audio('#{stream.url}');
       -#   audio.play();
 
-      = link_to 'Play',  play_station_path(@station), remote: true
+      = link_to 'Play',  play_station_path(@station), remote: true, class: 'btn btn-outline-danger'
 
       #player1
       :javascript

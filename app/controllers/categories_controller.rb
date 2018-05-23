@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
+    @title = 'Radio Stations Categories'
     @categories = Category.order(:title).page params[:page]
   end
 

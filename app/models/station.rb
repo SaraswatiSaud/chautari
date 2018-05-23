@@ -6,6 +6,7 @@ class Station < ApplicationRecord
   before_destroy { categories.clear }
 
   has_many :streams, dependent: :destroy
+  belongs_to :language
 
   paginates_per 15
 

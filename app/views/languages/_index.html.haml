@@ -1,0 +1,15 @@
+%h1.h2
+  By Languages
+  - if user_signed_in? && current_user.is_admin?
+    = link_to 'New Language', new_language_path, class: 'btn btn-primary float-right'
+
+- if @languages.present?
+  - @languages.each do |language|
+    %div
+      = link_to language.title, language, remote: true
+      - if user_signed_in? && current_user.is_admin?
+        = link_to 'Edit', edit_language_path(language)
+        = link_to 'Destroy', language, method: :delete, data: { confirm: 'Are you sure?' }
+
+- else
+  .text-danger No langugages present.

@@ -1,0 +1,15 @@
+%h1.h2
+  #{@language.title} Radio Stations
+  - if user_signed_in? && current_user.is_admin?
+    = link_to 'Edit', edit_language_path(@language), class: 'btn btn-primary float-right'
+    = link_to 'Back', languages_path, class: 'btn btn-primary float-right'
+
+- if @stations.any?
+  - @stations.each do |station|
+    .media.form-group
+      .media-left= image_tag(station.logo_url, class: 'border mr-3', size: '60x60')
+      .media-body
+        = link_to station.name, station, remote: true
+        %div= station.country
+- else
+  No stations present.

@@ -1,0 +1,3 @@
+$('main.container').html("<%=j render 'show' %>");
+history.pushState({turbolinks: true, url: '<%= language_path(@language) %>'}, null, '<%= language_path(@language) %>');
+document.title = '<%= title @title %>';
