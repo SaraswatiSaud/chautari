@@ -1,0 +1,10 @@
+- if station.streams.any?
+  - stream = station.streams.first
+  = link_to 'Play',  play_station_path(station), remote: true, class: 'btn btn-outline-danger'
+
+  #player1
+  :javascript
+    new Plyr(document.getElementById('player'));
+
+- else
+  .text-danger This station doesn't have any streams.

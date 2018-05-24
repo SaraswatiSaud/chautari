@@ -6,29 +6,49 @@
         - @station.errors.full_messages.each do |message|
           %li= message
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :country
-    = f.text_field :country
-  .field
-    = f.label :slug
-    = f.text_field :slug
-  .field
-    = f.label :logo
-    = f.text_field :logo
-  .field
-    = f.label :website
-    = f.text_field :website
-  .field
-    = f.label :twitter
-    = f.text_field :twitter
-  .field
-    = f.label :facebook
-    = f.text_field :facebook
-  .field
-    = f.label :total_listeners
-    = f.text_field :total_listeners
-  .actions
-    = f.submit 'Save'
+  .row
+    .col-md-4.form-group
+      .media
+        .media-left.media-middle= image_tag(f.object.logo_url, class: 'border mr-3', size: '68x68')
+        .media-body
+          = f.label :logo
+          = f.file_field :logo, class: 'form-control form-control-sm'
+    .col-md-8.form-group
+      = f.label :name
+      = f.text_field :name, class: 'form-control form-control-sm'
+  .row
+    .col-md-12.form-group
+      = f.label :tagline
+      = f.text_field :tagline, class: 'form-control form-control-sm'
+    .col-md-12.form-group
+      = f.label :description
+      = f.text_area :description, class: 'form-control form-control-sm', rows: 5
+  .row
+    .col-md-3.form-group
+      = f.label :language_id
+      %div= f.select :language_id, Language.all.collect{|l| [l.title, l.id]}
+    .col-md-3.form-group
+      = f.label :website
+      = f.text_field :website, class: 'form-control form-control-sm'
+    .col-md-3.form-group
+      = f.label :twitter
+      = f.text_field :twitter, class: 'form-control form-control-sm'
+    .col-md-3.form-group
+      = f.label :facebook
+      = f.text_field :facebook, class: 'form-control form-control-sm'
+  .row
+    .col-md-3.form-group
+      = f.label :country
+      = f.text_field :country, class: 'form-control form-control-sm'
+    .col-md-3.form-group
+      = f.label :address, 'Location'
+      = f.text_field :address, class: 'form-control form-control-sm'
+    .col-md-3.form-group
+      = f.label :contact, 'Contact Address/Phone'
+      = f.text_field :contact, class: 'form-control form-control-sm'
+    .col-md-3.form-group
+      = f.label :email
+      = f.text_field :email, class: 'form-control form-control-sm'
+  .row
+    .col-md-12.form-group
+      = f.submit 'Save', class: 'btn btn-primary'

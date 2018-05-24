@@ -12,4 +12,6 @@ class Station < ApplicationRecord
 
   extend FriendlyId
   friendly_id :name, use: :slugged
+
+  validates :name, :language_id, :country, presence: true
 end

@@ -5,30 +5,44 @@
     = link_to '< Back', :back, remote: true, class: 'btn btn-default'
 
 .row
-  .col-md-2= image_tag(@station.logo_url, class: 'border img-fluid')
-  .col-md-10
-    %h5= @station.name
-    %p= @station.country
-    %p= @station.website if @station.website?
-    %p= @station.twitter if @station.twitter?
-    %p= @station.facebook if @station.facebook?
+  .col-md-2.form-group= image_tag(@station.logo_url, class: 'border img-fluid')
+  .col-md-10.form-group
+    .form-group
+      %h5= @station.name
+      - if @station.tagline?
+        %p= @station.tagline
 
-    - if @station.streams.any?
-      - stream = @station.streams.first
-      -# = button_tag 'Stop', class: 'plr-stop'
-      -# :javascript
-      -#   audio = new Audio('#{stream.url}');
-      -#   audio.play();
+    = render 'stream', station: @station
 
-      = link_to 'Play',  play_station_path(@station), remote: true, class: 'btn btn-outline-danger'
+.row
+  .col-md-12
+    %h3.h4 Details
 
-      #player1
-      :javascript
-        player = new Plyr(document.getElementById('player'));
+- if @station.description?
+  .row
+    .col-md-12.form-group= @station.description
+- if @station.country?
+  .row
+    .col-md-12.small Location
+    .col-md-12.form-group= [@station.address, @station.country].compact.reject(&:empty?).join(', ')
 
-      -# %audio{controls: true, id: 'player', preload: 'none', 'data-plyr-config': '{ "invertTime": false }'}
-      -#   %source{src: stream.url, type: stream.content_type}
-      -#   Your browser does not support the audio element.
-
-    - else
-      .text-danger This station doesn't have any streams.
+- if @station.website?
+  .row
+    .col-md-12.small Website
+    .col-md-12.form-group= @station.website
+- if @station.twitter?
+  .row
+    .col-md-12.small Twitter
+    .col-md-12.form-group= @station.twitter
+- if @station.facebook?
+  .row
+    .col-md-12.small Facebook
+    .col-md-12.form-group= @station.facebook
+- if @station.contact?
+  .row
+    .col-md-12.small Address
+    .col-md-12.form-group= @station.contact
+- if @station.email?
+  .row
+    .col-md-12.small Email
+    .col-md-12.form-group= @station.email
