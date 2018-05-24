@@ -17,7 +17,6 @@ a:hover { color: #f55c78; text-decoration: none; }
   height: 60px;
   line-height: 60px;
   background-color: #f5f5f5;
-  .container { background-color: #f5f5f5; }
 }
 
 .spinner {
@@ -65,9 +64,22 @@ a:hover { color: #f55c78; text-decoration: none; }
 
 #player_area {
   position: fixed;
-  bottom: 60px;
-  right: 20px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 999;
+  line-height: 48px;
 
-  .text-right { line-height: 30px; }
-  #inner { border: 1px solid; }
+  a#close {
+    position: absolute;
+    right: 1rem;
+    z-index: 9999;
+  }
+  #inner {
+    background-color: white;
+    border-top: 2px solid #dc3545;
+    img { line-height: 46px; }
+    .media, .media-left, .media-body { height: 100%; }
+    .media-body { padding-left: 0.5rem; }
+  }
 }

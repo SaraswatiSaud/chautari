@@ -1,9 +1,20 @@
 - if session[:stream].present?
   - session[:stream].symbolize_keys!
-  .row
-    .col-md-12.text-right= link_to 'Close', player_close_stations_path, remote: true, class: 'small'
+
+  = link_to 'Close', player_close_stations_path, remote: true, class: 'small', id: 'close'
   #inner
-    %audio{controls: true, id: 'player', preload: 'none', 'data-plyr-config': '{ "invertTime": false }'}
+    .container
+      .row
+        .col-md-4
+          .media
+            .media-left
+              - station = Station.find_by(id: session[:stream][:station_id])
+              = image_tag station.logo_url, size: '36x36' if station.present?
+            .media-body
+              = link_to station.name, station_path(station), remote: true if station.present?
+
+        .col-md-6
+          %audio{controls: true, id: 'player', preload: 'none', 'data-plyr-config': '{ "invertTime": false }'}
 
   :javascript
     player = new Plyr('#player', {
