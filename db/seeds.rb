@@ -33,6 +33,7 @@ unless Station.any?
     next if st.present?
 
     station[:dirble_id] = station.delete(:id)
+    station[:language_id] = 1001 # Set language id of Other category
     st = Station.create(station)
 
     # Find or add Categories

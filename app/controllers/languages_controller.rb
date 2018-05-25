@@ -4,7 +4,7 @@ class LanguagesController < ApplicationController
 
   def index
     @title = 'Find Radio Stations by Language'
-    @languages = Language.all
+    @languages = Language.all.order(:title)
   end
 
   def show
