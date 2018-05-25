@@ -1,3 +1,4 @@
 $('main.container').html("<%=j render 'home' %>");
+$('#query').focus();
 history.pushState({turbolinks: true, url: '<%= root_path %>'}, null, '<%= root_path %>');
 document.title = '<%= title %>';

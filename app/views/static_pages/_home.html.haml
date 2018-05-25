@@ -4,11 +4,29 @@
 
 .mb-3
   .col-md-6.offset-md-3
-    = form_tag root_path, method: :get, remote: true do
+    = form_tag root_path, method: :get, remote: true, id: 'search_form' do
       .input-group.mb-4
-        = text_field_tag :query, params[:query], autocomplete: 'off', class: 'form-control', placeholder: 'Enter Radio station name...'
+        = search_field_tag :query, session[:query], autofocus: true, autocomplete: 'off', class: 'form-control', placeholder: 'Enter Radio station name...'
+        = link_to 'javascript:void(0);', class: 'close-icon' do
+          %i.fa.fa-times
         .input-group-append
           = button_tag 'Search', class: 'btn btn-primary'
 
 .mb-3 &nbsp;
 #stations_list.row= render 'stations/list'
+
+:javascript
+  show_hide_clear();
+  $('#query').on('keyup', function() {
+    show_hide_clear();
+  });
+
+  $('.close-icon').on('click', function() {
+    $('#query').val('');
+    $('#search_form').submit();
+  });
+
+  function show_hide_clear() {
+    if(!$('#query').val()) { $('.close-icon').hide(); }
+    else { $('.close-icon').show(); }
+  }

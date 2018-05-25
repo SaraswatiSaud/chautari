@@ -9,6 +9,7 @@ body {
 
 a { color: #dd0e34; }
 a:hover { color: #f55c78; text-decoration: none; }
+.form-control:focus { box-shadow: none; }
 
 .footer {
   position: absolute;
@@ -82,4 +83,12 @@ a:hover { color: #f55c78; text-decoration: none; }
     .media, .media-left, .media-body { height: 100%; }
     .media-body { padding-left: 0.5rem; }
   }
+}
+
+.close-icon {
+  position: absolute;
+  right: 76px;
+  padding: 6px 10px;
+  height: 100%;
+  z-index: 9;
 }
