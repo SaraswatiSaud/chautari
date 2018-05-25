@@ -7,7 +7,7 @@
     = form_tag root_path, method: :get, remote: true, id: 'search_form' do
       .input-group.mb-4
         = search_field_tag :query, session[:query], autofocus: true, autocomplete: 'off', class: 'form-control', placeholder: 'Enter Radio station name...'
-        = link_to 'javascript:void(0);', class: 'close-icon' do
+        = link_to root_path(query: ''), class: 'close-icon', remote: true do
           %i.fa.fa-times
         .input-group-append
           = button_tag 'Search', class: 'btn btn-primary'
@@ -19,11 +19,6 @@
   show_hide_clear();
   $('#query').on('keyup', function() {
     show_hide_clear();
-  });
-
-  $('.close-icon').on('click', function() {
-    $('#query').val('');
-    $('#search_form').submit();
   });
 
   function show_hide_clear() {
