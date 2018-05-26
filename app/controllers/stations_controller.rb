@@ -5,14 +5,12 @@ class StationsController < ApplicationController
   # GET /stations
   # GET /stations.json
   def index
-    @title = 'Radio Stations'
     @stations = Station.page params[:page]
   end
 
   # GET /stations/1
   # GET /stations/1.json
   def show
-    @title = @station.name
   end
 
   # GET /stations/new

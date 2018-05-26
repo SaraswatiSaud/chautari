@@ -1,8 +1,12 @@
+- set_meta_tags title: "#{@station.name} | Stream Radio Online | Chautari",
+                description: @station.description? ? @station.description : "Listen to #{@station.name} live for free.",
+                keywords: "#{[@station.name, @station.tagline, 'free radio', @station.categories.pluck(:title), 'stream music'].flatten.compact.join(',')}"
+
 .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pb-2.mb-3.border-bottom
   %h1.h2 Station Info
   .btn-toolbar.mb-2.mb-md-0
     = link_to 'Edit', edit_station_path(@station), class: 'btn btn-default' if user_signed_in? && current_user.is_admin?
-    = link_to '< Back', :back, remote: true, class: 'btn btn-default'
+    = link_to '< Back', request.headers['HTTP_REFERER'] || root_path, remote: true, class: 'btn btn-default'
 
 .row
   .col-md-2.form-group= image_tag(@station.logo_url, class: 'border img-fluid')

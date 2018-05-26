@@ -65,6 +65,7 @@ gem 'plyr-rails'
 gem 'sitemap_generator'
 gem 'friendly_id', '~> 5.1.0'
 gem 'font-awesome-rails'
+gem 'meta-tags'
 
 group :development do
     gem 'capistrano',         require: false
