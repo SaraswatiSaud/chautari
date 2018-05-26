@@ -3,4 +3,4 @@
 Sitemap: http://www.chautari.online/shared/sitemap.xml.gz
 
 User-agent: *
-Disallow: /*/play
+Disallow: /*/play$
