@@ -14,4 +14,10 @@ class Station < ApplicationRecord
   friendly_id :name, use: :slugged
 
   validates :name, :language_id, :country, presence: true
+  before_validation :strip_whitespace
+
+  private
+  def strip_whitespace
+    self.name.try(:strip!)
+  end
 end

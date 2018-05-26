@@ -5,7 +5,9 @@
 .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pb-2.mb-3.border-bottom
   %h1.h2 Station Info
   .btn-toolbar.mb-2.mb-md-0
-    = link_to 'Edit', edit_station_path(@station), class: 'btn btn-default' if user_signed_in? && current_user.is_admin?
+    - if user_signed_in? && current_user.is_admin?
+      = link_to 'Edit', edit_station_path(@station), class: 'btn btn-default'
+      = link_to 'Remove', @station, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-default'
     = link_to '< Back', request.headers['HTTP_REFERER'] || root_path, remote: true, class: 'btn btn-default'
 
 .row

@@ -2,7 +2,9 @@
                 description: 'Find radio stations about sports, news, music and talk.',
                 keywords: default_keywords
 
-%h1 Stations
+%h1.h2
+  Stations
+  = link_to 'New Station', new_station_path, class: 'btn btn-primary float-right' if user_signed_in? && current_user.is_admin?
 
 .table-responsive
   %table.table
@@ -38,7 +40,3 @@
 
       %tr
         %td.pt-3{colspan: 11}= paginate @stations
-
-%br
-
-= link_to 'New Station', new_station_path
