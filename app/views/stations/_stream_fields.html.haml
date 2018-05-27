@@ -1,0 +1,9 @@
+.row
+  .col-md-12
+    = f.label :url
+    .input-group.mb-3
+      = f.text_field :url, class: 'form-control form-control-sm'
+      .input-group-append
+        .input-group-text
+          = f.check_box :_destroy
+          %span.small= f.label :delete, class: 'mb-0 pl-2'

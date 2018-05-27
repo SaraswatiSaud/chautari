@@ -16,6 +16,8 @@ class Station < ApplicationRecord
   validates :name, :language_id, :country, presence: true
   before_validation :strip_whitespace
 
+  accepts_nested_attributes_for :streams, reject_if: :all_blank, allow_destroy: true
+
   private
   def strip_whitespace
     self.name.try(:strip!)

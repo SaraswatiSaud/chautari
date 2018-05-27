@@ -1,10 +1,5 @@
 = form_for @station do |f|
-  - if @station.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@station.errors.count, "error")} prohibited this station from being saved:"
-      %ul
-        - @station.errors.full_messages.each do |message|
-          %li= message
+  .form-group= errors_for @station
 
   .row
     .col-md-4.form-group
@@ -49,6 +44,29 @@
     .col-md-3.form-group
       = f.label :email
       = f.text_field :email, class: 'form-control form-control-sm'
+
+
+  .card.form-group
+    .card-body
+      %h3.h4 Streams
+      = f.fields_for :streams do |f|
+        = render 'stream_fields', f: f
+      = link_to_add_fields 'Add Stream', f, :streams
+
   .row
     .col-md-12.form-group
       = f.submit 'Save', class: 'btn btn-primary'
+
+:javascript
+  $("[data-form-prepend]").click(function(e) {
+    var obj = $($(this).attr("data-form-prepend"));
+    obj.find("input, select, textarea").each(function() {
+      $(this).attr("name", function() {
+        return $(this)
+          .attr("name")
+          .replace("new_record", new Date().getTime());
+      });
+    });
+    obj.insertBefore(this);
+    return false;
+  });
