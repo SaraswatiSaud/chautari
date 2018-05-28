@@ -1,0 +1,8 @@
+$red: #dd0e34;
+.plyr--audio .plyr__control.plyr__tab-focus, .plyr--audio .plyr__control:hover, .plyr--audio .plyr__control[aria-expanded=true] {
+  background: $red;
+}
+
+.plyr--full-ui input[type=range] {
+  color: $red;
+}
