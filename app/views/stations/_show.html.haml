@@ -1,6 +1,6 @@
 - set_meta_tags title: "Listen to #{@station.name} | Stream Radio Online | Chautari",
                 description: @station.description? ? @station.description : "Listen to #{@station.name} live for free.",
-                keywords: "#{[@station.name, @station.tagline, 'free radio', @station.categories.pluck(:title), 'stream music'].flatten.compact.join(',')}"
+                keywords: "#{[@station.name, @station.tagline, 'free radio', @station.categories.pluck(:title), 'stream music'].flatten.compact.reject(&:empty?).join(',')}"
 
 .row
   .col-md-8
