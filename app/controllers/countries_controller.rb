@@ -10,6 +10,8 @@ class CountriesController < ApplicationController
   # GET /countries/1
   # GET /countries/1.json
   def show
+    @title = "#{@country.name} Radio Stations"
+    @stations = @country.stations.page params[:page]
   end
 
   # GET /countries/new

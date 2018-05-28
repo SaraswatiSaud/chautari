@@ -1,23 +1,2 @@
-%h1 Listing countries
-
-%table
-  %thead
-    %tr
-      %th Iso code
-      %th Name
-      %th
-      %th
-      %th
-
-  %tbody
-    - @countries.each do |country|
-      %tr
-        %td= country.iso_code
-        %td= country.name
-        %td= link_to 'Show', country
-        %td= link_to 'Edit', edit_country_path(country)
-        %td= link_to 'Destroy', country, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Country', new_country_path
+- title @title
+= render 'index'
