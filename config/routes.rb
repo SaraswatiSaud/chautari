@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   get '/privacy-policy', to: 'static_pages#privacy_policy'
 
   resources :stations do
-    get 'play', on: :member
+    member do
+      get 'play'
+      get 'similar'
+    end
     get 'player_close', on: :collection
   end
 

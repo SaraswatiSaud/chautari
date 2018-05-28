@@ -1,6 +1,6 @@
 class StationsController < ApplicationController
   before_action :authenticate_admin!, except: [:index, :show, :play, :player_close]
-  before_action :set_station, only: [:show, :edit, :update, :destroy, :play]
+  before_action :set_station, only: [:show, :edit, :update, :destroy, :play, :similar]
 
   # GET /stations
   # GET /stations.json
@@ -70,17 +70,22 @@ class StationsController < ApplicationController
     session[:stream] = nil
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_station
-      @station = Station.friendly.find(params[:id])
-    end
+  def similar
+    @stations = Station.where(country_id: @station.country_id).or(Station.where(language_id: @station.language_id)).or(Station.where(categories: @station.categories)).limit(5)
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def station_params
-      params.require(:station).permit(
-        :name, :tagline, :description, :country_id, :language_id, :slug, :logo, :website, :twitter, :facebook, :address, :contact, :email,
-        streams_attributes: [ :id, :url, :_destroy ]
-      )
-    end
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_station
+    @station = Station.friendly.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def station_params
+    params.require(:station).permit(
+      :name, :tagline, :description, :country_id, :language_id, :slug, :logo, :website, :twitter, :facebook, :address, :contact, :email,
+      streams_attributes: [ :id, :url, :_destroy ]
+    )
+  end
 end

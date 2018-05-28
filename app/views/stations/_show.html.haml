@@ -1,54 +1,62 @@
-- set_meta_tags title: "#{@station.name} | Stream Radio Online | Chautari",
+- set_meta_tags title: "Listen to #{@station.name} | Stream Radio Online | Chautari",
                 description: @station.description? ? @station.description : "Listen to #{@station.name} live for free.",
                 keywords: "#{[@station.name, @station.tagline, 'free radio', @station.categories.pluck(:title), 'stream music'].flatten.compact.join(',')}"
 
-.d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pb-2.mb-3.border-bottom
-  %h1.h2 Station Info
-  .btn-toolbar.mb-2.mb-md-0
-    - if user_signed_in? && current_user.is_admin?
-      = link_to 'Edit', edit_station_path(@station), class: 'btn btn-default'
-      = link_to 'Remove', @station, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-default'
-    = link_to '< Back', request.headers['HTTP_REFERER'] || root_path, remote: true, class: 'btn btn-default'
-
 .row
-  .col-md-2.form-group= image_tag(@station.logo_url, class: 'border img-fluid')
-  .col-md-10.form-group
-    .form-group
-      %h5= @station.name
-      - if @station.tagline?
-        %p= @station.tagline
+  .col-md-8
+    -# .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pb-2.mb-3.border-bottom
+    %h1.h2.mb-3.pb-2.font-weight-light.border-bottom
+      Station Info
+      .btn-toolbar.mb-2.mb-md-0.float-right
+        - if user_signed_in? && current_user.is_admin?
+          = link_to 'Edit', edit_station_path(@station), class: 'btn btn-default'
+          = link_to 'Remove', @station, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-default'
+        = link_to '< Back', request.headers['HTTP_REFERER'] || root_path, remote: true, class: 'btn btn-default'
 
-    = render 'stream', station: @station
+    .row
+      .col-md-2.form-group= image_tag(@station.logo_url, class: 'border img-fluid')
+      .col-md-10.form-group
+        .form-group
+          %h5= @station.name
+          - if @station.tagline?
+            %p= @station.tagline
 
-.row
-  .col-md-12
-    %h3.h4 Details
+        = render 'stream', station: @station
 
-- if @station.description?
-  .row
-    .col-md-12.form-group= @station.description
+    .row
+      .col-md-12
+        %h3.h4 Details
 
-.row
-  .col-md-12.small Location
-  .col-md-12.form-group= [@station.address, @station.country_name].compact.reject(&:empty?).join(', ')
+    - if @station.description?
+      .row
+        .col-md-12.form-group= @station.description
 
-- if @station.website?
-  .row
-    .col-md-12.small Website
-    .col-md-12.form-group= @station.website
-- if @station.twitter?
-  .row
-    .col-md-12.small Twitter
-    .col-md-12.form-group= @station.twitter
-- if @station.facebook?
-  .row
-    .col-md-12.small Facebook
-    .col-md-12.form-group= @station.facebook
-- if @station.contact?
-  .row
-    .col-md-12.small Address
-    .col-md-12.form-group= @station.contact
-- if @station.email?
-  .row
-    .col-md-12.small Email
-    .col-md-12.form-group= @station.email
+    .row
+      .col-md-12.small Location
+      .col-md-12.form-group= [@station.address, @station.country_name].compact.reject(&:empty?).join(', ')
+
+    - if @station.website?
+      .row
+        .col-md-12.small Website
+        .col-md-12.form-group= @station.website
+    - if @station.twitter?
+      .row
+        .col-md-12.small Twitter
+        .col-md-12.form-group= @station.twitter
+    - if @station.facebook?
+      .row
+        .col-md-12.small Facebook
+        .col-md-12.form-group= @station.facebook
+    - if @station.contact?
+      .row
+        .col-md-12.small Address
+        .col-md-12.form-group= @station.contact
+    - if @station.email?
+      .row
+        .col-md-12.small Email
+        .col-md-12.form-group= @station.email
+  .col-md-4
+    %h1.h2.mb-3.pb-2.font-weight-light.border-bottom Similar Stations
+    #similar_stations
+      :javascript
+        $.get("#{similar_station_path(@station)}");
