@@ -1,13 +1,14 @@
 %footer.footer
   .container.d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.p-3
-    Copyright &copy; #{Date.today.year}, All Rights Reserved.
-    %div
-      = link_to 'FAQ', faq_path, remote: true, class: 'p-2 text-dark'
-      \|
-      = link_to 'Privacy Policy', privacy_policy_path, remote: true, class: 'p-2 text-dark'
-      \|
-      = link_to 'About Us', about_path, remote: true, class: 'p-2 text-dark'
-      \|
-      = link_to 'Contact', contact_path, remote: true, class: 'p-2 text-dark'
+    .row
+      .col-md-6.form-group Copyright &copy; #{Date.today.year}, All Rights Reserved.
+      .col-md-6.form-group
+        = link_to 'FAQ', faq_path, remote: true, class: 'p-2 text-dark'
+        \|
+        = link_to 'Privacy', privacy_policy_path, remote: true, class: 'p-2 text-dark'
+        \|
+        = link_to 'About Us', about_path, remote: true, class: 'p-2 text-dark'
+        \|
+        = link_to 'Contact', contact_path, remote: true, class: 'p-2 text-dark'
 
-      %span#player_area= render 'stations/player'
+    %span#player_area= render 'stations/player'

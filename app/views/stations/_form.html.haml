@@ -21,7 +21,7 @@
   .row
     .col-md-3.form-group
       = f.label :language_id
-      %div= f.select :language_id, Language.all.collect{|l| [l.title, l.id]}
+      %div= f.select :language_id, Language.all.collect{|l| [l.title, l.id]}, {}, class: 'form-control form-control-sm'
     .col-md-3.form-group
       = f.label :website
       = f.text_field :website, class: 'form-control form-control-sm'
@@ -33,8 +33,8 @@
       = f.text_field :facebook, class: 'form-control form-control-sm'
   .row
     .col-md-3.form-group
-      = f.label :country
-      = f.text_field :country, class: 'form-control form-control-sm'
+      = f.label :country_id
+      %div= f.select :country_id, Country.all.collect{|c| [c.name, c.id]}, {}, class: 'form-control form-control-sm'
     .col-md-3.form-group
       = f.label :address, 'Location'
       = f.text_field :address, class: 'form-control form-control-sm'
