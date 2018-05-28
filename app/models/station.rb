@@ -6,14 +6,15 @@ class Station < ApplicationRecord
   before_destroy { categories.clear }
 
   has_many :streams, dependent: :destroy
-  belongs_to :language
+  # belongs_to :language
+  # belongs_to :country
 
   paginates_per 15
 
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  validates :name, :language_id, :country, presence: true
+  validates :name, :country, presence: true
   before_validation :strip_whitespace
 
   accepts_nested_attributes_for :streams, reject_if: :all_blank, allow_destroy: true

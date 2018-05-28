@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :countries
   resources :languages
   get '/about', to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
