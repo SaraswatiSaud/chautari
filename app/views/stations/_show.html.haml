@@ -27,10 +27,10 @@
 - if @station.description?
   .row
     .col-md-12.form-group= @station.description
-- if @station.country?
-  .row
-    .col-md-12.small Location
-    .col-md-12.form-group= [@station.address, @station.country].compact.reject(&:empty?).join(', ')
+
+.row
+  .col-md-12.small Location
+  .col-md-12.form-group= [@station.address, @station.country_name].compact.reject(&:empty?).join(', ')
 
 - if @station.website?
   .row

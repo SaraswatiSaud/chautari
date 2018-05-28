@@ -10,6 +10,6 @@
       .media-left= image_tag(station.logo_url, class: 'border mr-3', size: '60x60')
       .media-body
         = link_to station.name, station, remote: true
-        %div= station.country
+        %div= station.country_name
 - else
   No stations present.
