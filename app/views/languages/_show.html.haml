@@ -11,5 +11,8 @@
       .media-body
         = link_to station.name, station, remote: true
         %div= station.country_name
+
+  = paginate @stations, window: 1, remote: true
+  
 - else
   No stations present.
