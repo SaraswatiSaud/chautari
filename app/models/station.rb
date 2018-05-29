@@ -21,6 +21,10 @@ class Station < ApplicationRecord
 
   delegate :name, to: :country, prefix: true
 
+  def similar_stations
+    Station.where(country_id: country_id).or(Station.where(language_id: language_id)).or(Station.where(categories: categories)).limit(5)
+  end
+
   private
   def strip_whitespace
     self.name.try(:strip!)

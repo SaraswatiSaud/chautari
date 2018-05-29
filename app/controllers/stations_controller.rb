@@ -1,5 +1,5 @@
 class StationsController < ApplicationController
-  before_action :authenticate_admin!, except: [:index, :show, :play, :player_close]
+  before_action :authenticate_admin!, except: [:index, :show, :play, :player_close, :similar]
   before_action :set_station, only: [:show, :edit, :update, :destroy, :play, :similar]
 
   # GET /stations
@@ -71,7 +71,7 @@ class StationsController < ApplicationController
   end
 
   def similar
-    @stations = Station.where(country_id: @station.country_id).or(Station.where(language_id: @station.language_id)).or(Station.where(categories: @station.categories)).limit(5)
+    @stations = @station.similar_stations
   end
 
   private
