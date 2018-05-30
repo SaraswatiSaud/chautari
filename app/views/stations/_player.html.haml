@@ -32,10 +32,10 @@
     });
     player.source = {
       type: 'audio',
-      title: 'Example title',
+      title: "#{station.name}",
       sources: [{
-        src: "#{session[:stream][:url]}",
-        type: "#{session[:stream][:content_type]}",
+        src: "#{session[:stream][:url].strip}",
+        type: "#{session[:stream][:content_type].strip}",
       }]
     };
     player.play();
