@@ -6,3 +6,32 @@ $red: #dd0e34;
 .plyr--full-ui input[type=range] {
   color: $red;
 }
+
+#player_area {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 999;
+  #inner {
+    background-color: white;
+    border-top: 2px solid #dc3545;
+    padding: 1rem;
+    .player_close { font-size: 1.5em; }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  #player_area {
+    img { width: 40px; height: 40px; }
+    .media-body .small { font-size: 60%; }
+    #inner { padding: 1rem 0; }
+  }
+  .plyr { border: 1px solid #ccc; margin-top: 0.75rem; }
+  .player_close {
+    position: absolute;
+    bottom: 4rem;
+    right: 1rem;
+  }
+  .plyr--audio .plyr__controls { padding: 5px; }
+}

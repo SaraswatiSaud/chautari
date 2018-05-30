@@ -61,20 +61,6 @@ a:hover { color: #f55c78; text-decoration: none; }
   text-align: left;
 }
 
-#player_area {
-  position: fixed;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  z-index: 999;
-  #inner {
-    background-color: white;
-    border-top: 2px solid #dc3545;
-    padding: 1rem;
-    .player_close { font-size: 1.5em; }
-  }
-}
-
 .close-icon {
   position: absolute;
   right: 76px;
