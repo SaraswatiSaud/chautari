@@ -22,11 +22,7 @@
             - if @station.tagline?
               %p= @station.tagline
 
-          .col-md-4.form-group
-            .sharethis-inline-share-buttons
-
-        .row
-          .col-md-12= render 'stream', station: @station
+        = render 'stream', station: @station
 
     .row
       .col-md-12

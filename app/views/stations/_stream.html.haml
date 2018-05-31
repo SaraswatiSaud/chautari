@@ -1,10 +1,13 @@
-- if station.streams.any?
-  - stream = station.streams.first
-  = link_to 'Play',  play_station_path(station), remote: true, class: 'btn btn-outline-danger'
+.row
+  - if station.streams.any?
+    - stream = station.streams.first
+    .col-md-2= link_to 'Play',  play_station_path(station), remote: true, class: 'btn btn-block btn-outline-danger'
+    .col-md-10
+      .sharethis-inline-share-buttons
 
-  #player1
-  :javascript
-    new Plyr(document.getElementById('player'));
+    #player1
+    :javascript
+      new Plyr(document.getElementById('player'));
 
-- else
-  .text-danger This station doesn't have any streams.
+  - else
+    .col-md-12.text-danger This station doesn't have any streams.
