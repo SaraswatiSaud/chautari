@@ -5,6 +5,8 @@ html {
 
 body {
   margin-bottom: 80px;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
 }
 
 a { color: #dd0e34; }
@@ -72,3 +74,4 @@ a:hover { color: #f55c78; text-decoration: none; }
 
 .field_with_errors input { border-color: #dc3545; }
 .mt-08 { margin-top: 0.8rem !important; }
+.lh-normal { line-height: 1.5; }
