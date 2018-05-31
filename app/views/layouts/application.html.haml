@@ -12,8 +12,8 @@
     = favicon_link_tag 'favicon-32x32.png'
     = favicon_link_tag 'favicon-16x16.png'
 
-    / Global site tag (gtag.js) - Google Analytics
     %script{async: "", src: "https://www.googletagmanager.com/gtag/js?id=UA-119525310-1"}
+    %script{src: '//platform-api.sharethis.com/js/sharethis.js#property=5b10122c3a3bb4001108aa36&product=social-ab', async: 'async'}
     :javascript
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
