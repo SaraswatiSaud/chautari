@@ -19,7 +19,7 @@
     %tbody
       - @stations.each do |station|
         %tr
-          %td{width: '80'}= image_tag(station.logo_url, class: 'border mr-3', size: '50x50')
+          %td{width: '80'}= image_tag(station.logo_url, class: 'border mr-3', size: '50x50', alt: station.name)
           %td
             %strong= link_to station.name, station
             %div

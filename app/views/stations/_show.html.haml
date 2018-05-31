@@ -15,7 +15,7 @@
             = link_to '< Back', request.headers['HTTP_REFERER'] || root_path, remote: true, class: 'btn btn-default btn-sm'
 
     .row
-      .col-md-3.form-group= image_tag(@station.logo_url, class: 'border img-fluid')
+      .col-md-3.form-group= image_tag(@station.logo_url, class: 'border img-fluid', alt: @station.name)
       .col-md-9.form-group
         .row
           .col-md-12.form-group

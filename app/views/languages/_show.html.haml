@@ -7,12 +7,12 @@
 - if @stations.any?
   - @stations.each do |station|
     .media.form-group
-      .media-left= image_tag(station.logo_url, class: 'border mr-3', size: '60x60')
+      .media-left= image_tag(station.logo_url, class: 'border mr-3', size: '60x60', alt: station.name)
       .media-body
         = link_to station.name, station, remote: true
         %div= station.country_name
 
   = paginate @stations, window: 1, remote: true
-  
+
 - else
   No stations present.
