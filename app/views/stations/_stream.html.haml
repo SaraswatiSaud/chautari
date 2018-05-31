@@ -3,7 +3,20 @@
     - stream = station.streams.first
     .col-md-2= link_to 'Play',  play_station_path(station), remote: true, class: 'btn btn-block btn-outline-danger'
     .col-md-10
-      .sharethis-inline-share-buttons
+      #sharethis-inline-share-buttons
+
+      - description = station.description || "#{station.name} is a radio station streaming live from #{station.country_name}. Listen to this station and others online at chautari.online."
+      :javascript
+        window.__sharethis__.load('inline-share-buttons', {
+          id: 'sharethis-inline-share-buttons',
+          enabled: true,
+          networks: ['facebook', 'twitter', 'googleplus', 'pinterest', 'sharethis', 'sms'],
+          show_mobile_buttons: false,
+          url: "#{URI.join(root_url, station_path(station))}",
+          image: "#{URI.join(root_url, station.logo_url)}",
+          description: "#{description}",
+          title: "Listen to #{station.name} live"
+        });
 
     #player1
     :javascript

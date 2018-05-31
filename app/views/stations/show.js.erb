@@ -1,6 +1,3 @@
 $('main.container').html("<%=j render 'show' %>");
 history.pushState({turbolinks: true, url: '<%= station_path(@station) %>'}, null, '<%= station_path(@station) %>');
 document.title = '<%= title @title %>';
-
-// For loading sharethis icons with ajax change
-if (__sharethis__ && __sharethis__.config) { __sharethis__.init(__sharethis__.config); }
