@@ -16,12 +16,16 @@
     .row
       .col-md-2.form-group= image_tag(@station.logo_url, class: 'border img-fluid')
       .col-md-10.form-group
-        .form-group
-          %h5= @station.name
-          - if @station.tagline?
-            %p= @station.tagline
+        .row
+          .col-md-8.form-group
+            %h5= @station.name
+            - if @station.tagline?
+              %p= @station.tagline
 
-        = render 'stream', station: @station
+          .col-md-4.form-group
+
+        .row
+          .col-md-12= render 'stream', station: @station
 
     .row
       .col-md-12
