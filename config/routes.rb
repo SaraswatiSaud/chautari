@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :stations do
     member do
       get 'play'
+      get 'playing_now'
       get 'similar'
     end
     get 'player_close', on: :collection
