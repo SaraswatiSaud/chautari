@@ -27,7 +27,7 @@ class Station < ApplicationRecord
 
   def playing_now
     stream = Shoutout::Stream.new(streams.first.url)
-    song = stream.now_playing if stream.connect
+    song = Timeout::timeout(5) { stream.now_playing if stream.connect }
     song.present? ? "Playing Now: #{song}" : country_name
   rescue
     country_name
