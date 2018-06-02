@@ -1,6 +1,6 @@
 class StationsController < ApplicationController
   before_action :authenticate_admin!, except: [:index, :show, :play, :player_close, :similar]
-  before_action :set_station, only: [:show, :edit, :update, :destroy, :play, :similar]
+  before_action :set_station, only: [:show, :edit, :update, :destroy, :play, :similar, :playing_now]
 
   # GET /stations
   # GET /stations.json
@@ -64,6 +64,10 @@ class StationsController < ApplicationController
 
   def play
     session[:stream] = @station.streams.try(:first).try(:attributes)
+  end
+
+  def playing_now
+    @playing_now = @station.playing_now
   end
 
   def player_close

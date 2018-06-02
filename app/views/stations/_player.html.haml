@@ -10,7 +10,9 @@
               .align-self-center.mr-3= image_tag station.logo_url, size: '50x50', class: 'border', alt: station.name
               .media-body
                 = link_to station.name, station_path(station), remote: true
-                .small= station.country_name
+                #playing_now.small= station.playing_now
+                :javascript
+                  setInterval(function(){ $.get("#{playing_now_station_path(station)}") }, 30000);
 
           .col-md-5
             - if session[:stream][:url].present?

@@ -67,6 +67,8 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'font-awesome-rails'
 gem 'meta-tags'
 
+gem 'shoutout', github: 'dirble/shoutout'
+
 group :development do
     gem 'capistrano',         require: false
     gem 'capistrano-rvm',     require: false

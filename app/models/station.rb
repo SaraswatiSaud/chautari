@@ -25,6 +25,16 @@ class Station < ApplicationRecord
     Station.where(country_id: country_id).or(Station.where(language_id: language_id)).or(Station.where(categories: categories)).limit(5)
   end
 
+  def playing_now
+    stream = Shoutout::Stream.new(streams.first.url)
+    song = stream.now_playing if stream.connect
+    song.present? ? "Playing Now: #{song}" : country_name
+  rescue
+    country_name
+  ensure
+    stream.disconnect
+  end
+
   private
   def strip_whitespace
     self.name.try(:strip!)
