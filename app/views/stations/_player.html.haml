@@ -9,8 +9,8 @@
             .media
               .align-self-center.mr-3= image_tag station.logo_url, size: '50x50', class: 'border', alt: station.name
               .media-body
-                = link_to station.name, station_path(station), remote: true
-                #playing_now.small= station.country_name
+                = link_to station.name, station_path(station), remote: true, class: 'text-truncate'
+                #playing_now.small.text-truncate= station.country_name
                 :javascript
                   if(typeof playingNow !== 'undefined') { clearInterval(playingNow); }
                   playingNow = setInterval(function(){ $.get("#{playing_now_station_path(station)}") }, 20000);
