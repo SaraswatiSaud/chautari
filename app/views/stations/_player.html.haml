@@ -12,7 +12,7 @@
                 = link_to station.name, station_path(station), remote: true
                 #playing_now.small= station.country_name
                 :javascript
-                  setInterval(function(){ $.get("#{playing_now_station_path(station)}") }, 30000);
+                  // setInterval(function(){ $.get("#{playing_now_station_path(station)}") }, 30000);
 
           .col-md-5
             - if session[:stream][:url].present?
