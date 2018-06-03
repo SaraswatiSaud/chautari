@@ -26,13 +26,8 @@ class Station < ApplicationRecord
   end
 
   def playing_now
-    stream = Shoutout::Stream.new(streams.first.url)
-    song = Timeout::timeout(5) { stream.now_playing if stream.connect }
-    song.present? ? "Playing Now: #{song}" : country_name
-  rescue
-    country_name
-  ensure
-    stream.disconnect
+    song = streams.first.icy_metadata if streams.any?
+    song.present? ? "Playing Now: #{song.now_playing}" : country_name
   end
 
   private
