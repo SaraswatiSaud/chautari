@@ -50,7 +50,7 @@ RSpec.describe User, type: :model do
       expect(mixed_case_email.downcase).to eq(user.reload.email)
     end
   end
- 
+  
   context 'Password' do
     it 'is valid if contain atleast 6 characters long password' do
       user.password = '6 characters long'
