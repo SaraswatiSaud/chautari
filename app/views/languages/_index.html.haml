@@ -9,9 +9,9 @@
 
 - if @languages.present?
   .row
-    - @languages.in_groups_of(@languages.size/3) do |group|
+    - @languages.in_groups_of(@languages.size/3, false) do |group|
       .col-md-4
-        - group.compact.each do |language|
+        - group.each do |language|
           .form-group
             = link_to language.title, language, remote: true
             - if user_signed_in? && current_user.is_admin?

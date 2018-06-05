@@ -9,9 +9,9 @@
 
 - if @countries.present?
   .row
-    - @countries.in_groups_of(@countries.size/3) do |group|
+    - @countries.in_groups_of(@countries.size/3, false) do |group|
       .col-md-4
-        - group.compact.each do |country|
+        - group.each do |country|
           .form-group
             = link_to country.name, country, remote: true
             - if user_signed_in? && current_user.is_admin?
