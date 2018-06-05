@@ -11,7 +11,7 @@
   .row
     - @languages.in_groups_of(@languages.size/3) do |group|
       .col-md-4
-        - group.each do |language|
+        - group.compact.each do |language|
           .form-group
             = link_to language.title, language, remote: true
             - if user_signed_in? && current_user.is_admin?

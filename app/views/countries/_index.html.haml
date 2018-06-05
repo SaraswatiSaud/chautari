@@ -11,7 +11,7 @@
   .row
     - @countries.in_groups_of(@countries.size/3) do |group|
       .col-md-4
-        - group.each do |country|
+        - group.compact.each do |country|
           .form-group
             = link_to country.name, country, remote: true
             - if user_signed_in? && current_user.is_admin?
