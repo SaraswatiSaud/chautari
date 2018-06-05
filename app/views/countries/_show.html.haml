@@ -1,3 +1,7 @@
+- set_meta_tags title: "Radio Stations from #{@country.name} | Stream Radio Online | Chautari",
+                description: "Find local radio stations from #{@country.name} about sports, news, music and talk.",
+                keywords: "#{@country.name},radio,stream radio,listen radio,chautari,online radio"
+
 %h1.h2.mb-3.pb-2.font-weight-light.border-bottom
   #{@country.name} Radio Stations
   - if user_signed_in? && current_user.is_admin?

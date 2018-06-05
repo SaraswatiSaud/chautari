@@ -1,15 +1,22 @@
+- set_meta_tags title: "Find Radio Stations by Country | Stream Radio Online | Chautari",
+                description: 'Find local radio stations by country about sports, news, music and talk.',
+                keywords: default_keywords
+
 %h1.h2.mb-3.pb-2.font-weight-light.border-bottom
   By Countries
   - if user_signed_in? && current_user.is_admin?
     = link_to 'New country', new_country_path, class: 'btn btn-primary float-right'
 
 - if @countries.present?
-  - @countries.each do |country|
-    %div
-      = link_to country.name, country, remote: true
-      - if user_signed_in? && current_user.is_admin?
-        = link_to 'Edit', edit_country_path(country)
-        = link_to 'Destroy', country, method: :delete, data: { confirm: 'Are you sure?' }
+  .row
+    - @countries.in_groups_of(@countries.size/3) do |group|
+      .col-md-4
+        - group.each do |country|
+          .form-group
+            = link_to country.name, country, remote: true
+            - if user_signed_in? && current_user.is_admin?
+              = link_to 'Edit', edit_country_path(country)
+              = link_to 'Destroy', country, method: :delete, data: { confirm: 'Are you sure?' }
 
 
 - else
