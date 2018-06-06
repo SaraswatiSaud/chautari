@@ -37,7 +37,7 @@
         title: "#{station.name}",
         sources: [{
           src: "#{session[:stream][:url].strip}",
-          type: "#{session[:stream][:content_type].try(:strip)}",
+          type: "#{session[:stream][:content_type].try(:strip) || 'audio/mpeg'}",
         }]
       };
       player.play();
