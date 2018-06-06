@@ -16,6 +16,7 @@ class Stream < ApplicationRecord
           bitrate: stream.bitrate,
           is_public: stream.public?,
           now_playing: stream.now_playing,
+          content_type: stream.content_type,
           website: stream.website
         )
       end

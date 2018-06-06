@@ -3,6 +3,6 @@ history.pushState({turbolinks: true, url: '<%= station_path(@station) %>'}, null
 document.title = '<%= title @title %>';
 
 $("meta[property='og:title']").attr("content", 'Listen to <%= @station.name %>')
-$("meta[property='og:description']").attr("content", '<%= @station.description? ? @station.description : "Listen to #{@station.name} live for free." %>')
+$("meta[property='og:description']").attr("content", '<%= @station.description? ? "#{@station.description}" : "Listen to #{@station.name} live for free." %>')
 $("meta[property='og:url']").attr("content", '<%= station_url(@station) %>')
 $("meta[property='og:image']").attr("content", '<%= image_url(@station.logo_url) %>')
