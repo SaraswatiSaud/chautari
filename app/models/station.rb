@@ -27,7 +27,8 @@ class Station < ApplicationRecord
 
   def playing_now
     song = streams.first.icy_metadata if streams.any?
-    song.present? ? "Playing Now: #{song.now_playing}" : country_name
+    playing_now = song.now_playing if song.present?
+    playing_now.present? ? "Playing Now: #{playing_now}" : country_name
   end
 
   private
