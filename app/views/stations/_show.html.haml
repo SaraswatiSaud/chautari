@@ -1,5 +1,5 @@
 - meta_title = "Listen to #{@station.name} | Stream Radio Online | Chautari"
-- meta_desc = @station.description? ? @station.description : "Listen to #{@station.name} live for free."
+- meta_desc = @station.description? ? @station.description.squish : "Listen to #{@station.name} live for free."
 - set_meta_tags title: meta_title,
                 description: meta_desc,
                 keywords: "#{[@station.name, @station.tagline, 'free radio', @station.categories.pluck(:title), 'stream music'].flatten.compact.reject(&:empty?).join(',')}",
