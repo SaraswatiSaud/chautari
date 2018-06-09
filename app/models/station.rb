@@ -20,6 +20,7 @@ class Station < ApplicationRecord
   accepts_nested_attributes_for :streams, reject_if: :all_blank, allow_destroy: true
 
   delegate :name, to: :country, prefix: true, allow_nil: true
+  delegate :title, to: :language, prefix: true, allow_nil: true
 
   def similar_stations
     Station.where(country_id: country_id).or(Station.where(language_id: language_id)).or(Station.where(categories: categories)).limit(5)

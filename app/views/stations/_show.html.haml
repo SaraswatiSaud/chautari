@@ -1,8 +1,11 @@
-- meta_title = "Listen to #{@station.name} | Stream Radio Online | Chautari"
-- meta_desc = @station.description? ? @station.description.squish : "Listen to #{@station.name} live for free."
+- meta_tagline = [@station.address, @station.country_name].reject(&:empty?).compact.join(', ') || 'Stream Radio Online'
+- meta_keywords = [@station.name, @station.tagline, 'free radio', @station.categories.pluck(:title), 'stream music',meta_tagline,@station.language_title + ' radio'].flatten.compact.reject(&:empty?).join(',')
+
+- meta_title = "Listen to #{@station.name}, #{meta_tagline} | Chautari"
+- meta_desc = @station.description? ? @station.description.squish : "Listen to #{@station.name}, #{meta_tagline} for free."
 - set_meta_tags title: meta_title,
                 description: meta_desc,
-                keywords: "#{[@station.name, @station.tagline, 'free radio', @station.categories.pluck(:title), 'stream music'].flatten.compact.reject(&:empty?).join(',')}",
+                keywords: meta_keywords,
                 og: { title: "Listen to #{@station.name}", url: station_url(@station), image: image_url(@station.logo_url), description: meta_desc }
 
 .row
