@@ -1,4 +1,4 @@
-- meta_tagline = [@station.address, @station.country_name].reject(&:empty?).compact.join(', ') || 'Stream Radio Online'
+- meta_tagline = [@station.address, @station.country_name].compact.reject(&:empty?).join(', ') || 'Stream Radio Online'
 - meta_keywords = [@station.name, @station.tagline, 'free radio', @station.categories.pluck(:title), 'stream music',meta_tagline,@station.language_title + ' radio'].flatten.compact.reject(&:empty?).join(',')
 
 - meta_title = "Listen to #{@station.name}, #{meta_tagline} | Chautari"
