@@ -14,7 +14,7 @@
           show_mobile_buttons: false,
           url: "#{URI.join(root_url, station_path(station))}",
           image: "#{URI.join(root_url, station.logo_url)}",
-          description: "#{description}",
+          description: "#{description.squish}",
           title: "Listen to #{station.name} live"
         });
 
