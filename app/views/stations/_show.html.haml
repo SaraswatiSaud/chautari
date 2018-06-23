@@ -40,13 +40,14 @@
         .col-md-12.form-group= @station.description
 
     .row
+      - country = link_to @station.country_name, country_path(@station.country)
       .col-md-12.small Location
-      .col-md-12.form-group= [@station.address, @station.country_name].compact.reject(&:empty?).join(', ')
+      .col-md-12.form-group= [@station.address, country].compact.reject(&:empty?).join(', ').html_safe
 
     - if @station.website?
       .row
         .col-md-12.small Website
-        .col-md-12.form-group= @station.website
+        .col-md-12.form-group= link_to @station.website, @station.website, target: '_blank'
     - if @station.twitter?
       .row
         .col-md-12.small Twitter
