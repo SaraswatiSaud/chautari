@@ -1,6 +1,12 @@
+- meta_description = 'Listen to thousands of live online radio from around the world. Find radio stations about sports, news, music and talk.'
 - set_meta_tags title: 'Chautari | Stream Radio Online',
-                description: 'Listen to thousands of live online radio from around the world. Find radio stations about sports, news, music and talk.',
-                keywords: default_keywords
+                description: meta_description,
+                keywords: default_keywords,
+                og: { title: 'Stream Radio Online | Chautari',
+                      type: 'website',
+                      url: 'https://www.chautari.online',
+                      description: meta_description,
+                      image: root_url + 'chautari_radio.png' }
 
 .px-3.py-3.pt-md-5.pb-md-4.mx-auto.text-center
   %h1.display-4 Welcome to Chautari
