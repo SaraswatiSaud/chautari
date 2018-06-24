@@ -1,5 +1,5 @@
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = 'http://www.chautari.online'
+SitemapGenerator::Sitemap.default_host = ROOT_URL
 # SitemapGenerator::Sitemap.ping_search_engines
 SitemapGenerator::Sitemap.sitemaps_path = 'shared/'
 
