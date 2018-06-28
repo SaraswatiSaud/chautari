@@ -12,6 +12,8 @@ class CountriesController < ApplicationController
   def show
     @title = "#{@country.name} Radio Stations"
     @stations = @country.stations.page params[:page]
+
+    @most_popular = @country.stations.order(impressions_count: :desc).limit(10)
   end
 
   # GET /countries/new

@@ -3,20 +3,32 @@
                 keywords: "#{@country.name},radio,stream radio,listen radio,chautari,online radio"
 
 %h1.h2.mb-3.pb-2.font-weight-light.border-bottom
-  #{@country.name} Radio Stations
+  Radio Stations from #{@country.name}
   - if user_signed_in? && current_user.is_admin?
     = link_to 'Edit', edit_country_path(@country), class: 'btn btn-primary float-right'
     = link_to 'Back', countries_path, class: 'btn btn-primary float-right'
 
 - if @stations.any?
-  - @stations.each do |station|
-    .media.form-group
-      .media-left= image_tag(station.logo_url, class: 'border mr-3', size: '60x60', alt: station.name)
-      .media-body
-        = link_to station.name, station, remote: true
-        %div= station.country_name
+  .row
+    .col-md-8
+      - @stations.each do |station|
+        .media.form-group
+          .media-left= image_tag(station.logo_url, class: 'border mr-3', size: '60x60', alt: station.name)
+          .media-body
+            = link_to station.name, station, remote: true
+            %div= station.country_name
 
-  = paginate @stations, window: 1, remote: true
+      = paginate @stations, window: 1, remote: true
+
+    .col-md-4
+      %h5.mb-3.pb-2.border-bottom Most Popular in #{@country.name}
+
+      - @most_popular.each do |station|
+        .media.form-group
+          .media-left= image_tag(station.logo_url, class: 'border mr-3', size: '60x60', alt: station.name)
+          .media-body
+            = link_to station.name, station, remote: true
+            %div= station.country_name
 
 - else
   No stations present.
