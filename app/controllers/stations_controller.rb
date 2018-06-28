@@ -2,6 +2,8 @@ class StationsController < ApplicationController
   before_action :authenticate_admin!, except: [:index, :show, :play, :player_close, :similar]
   before_action :set_station, only: [:show, :edit, :update, :destroy, :play, :similar, :playing_now]
 
+  impressionist actions: [:show], unique: [:session_hash]
+
   # GET /stations
   # GET /stations.json
   def index
@@ -11,6 +13,7 @@ class StationsController < ApplicationController
   # GET /stations/1
   # GET /stations/1.json
   def show
+    impressionist(@station)
   end
 
   # GET /stations/new

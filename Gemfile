@@ -69,6 +69,7 @@ gem 'sitemap_generator'
 gem 'friendly_id', '~> 5.1.0'
 gem 'font-awesome-rails'
 gem 'meta-tags'
+gem 'impressionist'
 
 gem 'shoutout', github: 'dirble/shoutout'
 

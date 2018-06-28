@@ -2,6 +2,8 @@ class Station < ApplicationRecord
   store_accessor :settings, :dirble_id
   mount_uploader :logo, LogoUploader
 
+  is_impressionable counter_cache: true, unique: true
+
   has_and_belongs_to_many :categories
   before_destroy { categories.clear }
 
