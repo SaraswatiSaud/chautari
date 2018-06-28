@@ -7,7 +7,7 @@ class StationsController < ApplicationController
   # GET /stations
   # GET /stations.json
   def index
-    @stations = Station.page params[:page]
+    @stations = Station.order(id: :desc).page params[:page]
   end
 
   # GET /stations/1
