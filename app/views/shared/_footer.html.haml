@@ -4,11 +4,11 @@
       .col-md-6.form-group.pt-3
         Copyright &copy; #{Date.today.year}, All Rights Reserved.
         -# = link_to 'FAQ', faq_path, remote: true, class: 'p-2 text-dark'
-        = link_to 'Privacy', privacy_policy_path, remote: true, class: 'p-2 text-dark'
-        = link_to 'About Us', about_path, remote: true, class: 'p-2 text-dark'
-        = link_to 'Contact', contact_path, remote: true, class: 'p-2 text-dark'
+        = link_to 'Privacy', privacy_policy_path, title: 'Privacy policy', remote: true, class: 'p-2 text-dark'
+        = link_to 'About Us', about_path, title: 'About Us', remote: true, class: 'p-2 text-dark'
+        = link_to 'Contact', contact_path, title: 'Contact Us', remote: true, class: 'p-2 text-dark'
       .col-md-6.form-group.pt-3.text-md-right
-        = link_to 'https://www.facebook.com/Chautari-Online-399438893872641/', target: '_blank' do
+        = link_to 'https://www.facebook.com/Chautari-Online-399438893872641/', title: 'Facebook Page', target: '_blank' do
           %i.fa.fa-facebook
 
     %span#player_area= render 'stations/player'
