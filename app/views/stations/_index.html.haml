@@ -13,6 +13,7 @@
         %th{colspan: 2} Name
         %th Country
         - if user_signed_in? && current_user.is_admin?
+          %th Status
           %th
           %th
 
@@ -31,6 +32,9 @@
                   = link_to 'Facebook', station.facebook, class: 'btn'
           %td= station.country_name
           - if user_signed_in? && current_user.is_admin?
+            %td
+              - status_code = { pending: 'primary', active: 'success', archived: 'secondary' }
+              %span.badge{class: "badge-#{status_code[station.status.to_sym]}"}= station.status.titleize
             %td= link_to 'Edit', edit_station_path(station)
             %td= link_to 'Destroy', station, method: :delete, data: { confirm: 'Are you sure?' }
 

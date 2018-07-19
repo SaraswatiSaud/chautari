@@ -12,7 +12,11 @@ class StationsController < ApplicationController
   # GET /stations
   # GET /stations.json
   def index
-    @stations = Station.active.order(id: :desc).page params[:page]
+    stations = Station.order(id: :desc)
+
+    # Also display pending stations if admin
+    stations = stations.active unless (user_signed_in? && current_user.is_admin?)
+    @stations = stations.order(id: :desc).page params[:page]
   end
 
   # GET /stations/1
