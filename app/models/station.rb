@@ -3,6 +3,7 @@ class Station < ApplicationRecord
   mount_uploader :logo, LogoUploader
 
   is_impressionable counter_cache: true, unique: true
+  enum status: [:pending, :active, :archived]
 
   has_and_belongs_to_many :categories
   before_destroy { categories.clear }
@@ -25,13 +26,17 @@ class Station < ApplicationRecord
   delegate :title, to: :language, prefix: true, allow_nil: true
 
   def similar_stations
-    Station.where(country_id: country_id).or(Station.where(language_id: language_id)).or(Station.where(categories: categories)).limit(5)
+    Station.active.where(country_id: country_id).or(Station.where(language_id: language_id)).or(Station.where(categories: categories)).limit(5)
   end
 
   def playing_now
     song = streams.first.icy_metadata if streams.any?
     playing_now = song.now_playing if song.present?
     playing_now.present? ? "Playing Now: #{playing_now}" : country_name
+  end
+
+  def active_streams
+    streams.active
   end
 
   private

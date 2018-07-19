@@ -1,6 +1,6 @@
 .row
-  - if station.streams.any?
-    - stream = station.streams.first
+  - if station.active_streams.any?
+    - stream = station.active_streams.first
     .col-md-2.form-group= link_to 'Play',  play_station_path(station), remote: true, class: 'btn btn-block btn-outline-danger'
     .col-md-10.form-group
       #sharethis-inline-share-buttons

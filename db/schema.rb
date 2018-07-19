@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_28_174955) do
+ActiveRecord::Schema.define(version: 2018_07_18_203558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(version: 2018_06_28_174955) do
     t.string "email"
     t.bigint "country_id"
     t.integer "impressions_count", default: 0
+    t.integer "status", default: 0, null: false
     t.index ["country_id"], name: "index_stations_on_country_id"
     t.index ["language_id"], name: "index_stations_on_language_id"
   end
@@ -114,7 +115,7 @@ ActiveRecord::Schema.define(version: 2018_06_28_174955) do
     t.string "url"
     t.integer "bitrate"
     t.string "content_type"
-    t.integer "status"
+    t.integer "status", default: 0, null: false
     t.integer "listeners"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

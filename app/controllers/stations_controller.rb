@@ -1,23 +1,30 @@
 class StationsController < ApplicationController
-  before_action :authenticate_admin!, except: [:index, :show, :play, :player_close, :similar]
-  before_action :set_station, only: [:show, :edit, :update, :destroy, :play, :similar, :playing_now]
+  before_action :authenticate_admin!, except: [:new, :create, :index, :show, :play, :player_close, :similar, :thankyou]
+  before_action :set_station, only: [:show, :edit, :update, :destroy, :play, :similar, :playing_now, :thankyou]
+
+  # rescue_from ActiveRecord::RecordNotFound, with: :invalid_station
+  # def invalid_station
+  #   redirect_to root_path, alert: 'Station not available!'
+  # end
 
   impressionist actions: [:show], unique: [:session_hash]
 
   # GET /stations
   # GET /stations.json
   def index
-    @stations = Station.order(id: :desc).page params[:page]
+    @stations = Station.active.order(id: :desc).page params[:page]
   end
 
   # GET /stations/1
   # GET /stations/1.json
   def show
+    redirect_to root_path, alert: 'Station not available!' unless @station.active? || (user_signed_in? && current_user.is_admin?)
     impressionist(@station)
   end
 
   # GET /stations/new
   def new
+    @title = 'Add New Radio Station'
     @station = Station.new
   end
 
@@ -32,7 +39,11 @@ class StationsController < ApplicationController
 
     respond_to do |format|
       if @station.save
-        format.html { redirect_to @station, notice: 'Station was successfully created.' }
+        # If admin creates a station, redirect to show page.
+        # If guest creates a station, redirect to thank you page.
+        path = (user_signed_in? && current_user.is_admin?) ? @station : thankyou_station_path(@station)
+
+        format.html { redirect_to path, notice: 'Station was successfully saved.' }
         format.json { render :show, status: :created, location: @station }
       else
         format.html { render :new }
@@ -79,6 +90,10 @@ class StationsController < ApplicationController
 
   def similar
     @stations = @station.similar_stations
+  end
+
+  # Displays thank you page after guest adds a radio station
+  def thankyou
   end
 
   private

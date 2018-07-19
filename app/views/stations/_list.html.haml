@@ -2,4 +2,7 @@
   = render @stations
   .mx-auto= paginate @stations, window: 1, remote: true
 - else
-  %p No stations found. Please review your search query.
+  .col-md-12
+    %p.text-danger.text-center
+      %i.fa.fa-exclamation-triangle
+      No stations found. Please review your search query.

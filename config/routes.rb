@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get '/404', to: 'errors#not_found', via: :all
+  get '/422', to: 'errors#unacceptable', via: :all
+  get '/500', to: 'errors#internal_error', via: :all
+
   resources :countries
   resources :languages
   get '/about', to: 'static_pages#about'
@@ -11,8 +15,12 @@ Rails.application.routes.draw do
       get 'play'
       get 'playing_now'
       get 'similar'
+      get 'thankyou'
     end
-    get 'player_close', on: :collection
+
+    collection do
+      get 'player_close'
+    end
   end
 
   resources :categories

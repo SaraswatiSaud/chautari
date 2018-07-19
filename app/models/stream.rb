@@ -1,8 +1,7 @@
 class Stream < ApplicationRecord
   belongs_to :station
   before_validation :strip_whitespace
-
-  default_scope { where(status: 1) }
+  enum status: [:pending, :active]
 
   def icy_metadata
     stream = Shoutout::Stream.new(url)

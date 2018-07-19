@@ -1,0 +1,3 @@
+$('main.container').html("<%=j render 'new' %>");
+history.pushState({turbolinks: true, url: '<%= new_station_path %>'}, null, '<%= new_station_path %>');
+document.title = '<%= title @title %>';
