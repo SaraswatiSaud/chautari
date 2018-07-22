@@ -3,4 +3,27 @@
                 keywords: default_keywords
 
 %h1.h2 Contact Us
-%p Please contact us by sending an email to feedbacks@chautari.online
+
+%p Please contact us by filling out the form below or by sending an email to feedbacks@jharko.com.
+.row
+  .col-md-12
+    = form_tag '/contact', method: :post do
+      .form-group
+        %label{for: :name} Name
+        = text_field_tag :name, params[:name], autocomplete: :off, class: 'form-control', required: true
+
+      .form-group
+        %label{for: :email} Email
+        = text_field_tag :email, params[:email], autocomplete: :off, class: 'form-control', required: true
+
+      .form-group
+        %label{for: :subject} Subject
+        = text_field_tag :subject, params[:subject], autocomplete: :off, class: 'form-control'
+
+      .form-group
+        %label{for: :message} Message
+        = text_field_tag :message, params[:message], autocomplete: :off, class: 'form-control', required: true
+
+      .form-group
+        = text_field_tag :nickname, '', class: 'd-none'
+        = submit_tag 'Send', class: 'btn btn-primary'

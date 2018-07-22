@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :languages
   get '/about', to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
+  post '/contact', to: 'static_pages#contact'
   get '/faq', to: 'static_pages#faq'
   get '/privacy-policy', to: 'static_pages#privacy_policy'
 
