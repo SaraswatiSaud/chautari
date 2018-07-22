@@ -67,9 +67,9 @@ class Station < ApplicationRecord
   private
 
   def default_meta_desc
-    str = "#{name} is a Radio Station streaming online from #{full_address}."
+    str = "#{name} is a Radio Station streaming online from #{full_address}. "
     str += "This station plays content of categories - #{categories_names}. " if categories_names.present?
-    str += "Listen to #{name} for free online."
+    str += "Listen to #{name} for free."
     str
   end
 
