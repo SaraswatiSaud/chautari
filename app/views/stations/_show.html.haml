@@ -25,7 +25,11 @@
           .col-md-12.form-group
             %h1.h2.font-weight-light= @station.name
             - if @station.tagline?
-              %p= @station.tagline
+              %div= @station.tagline
+
+            - cnames = @station.categories_names
+            - if cnames.present?
+              %small.text-muted= genre_links(cnames)
 
         = render 'stream', station: @station
 

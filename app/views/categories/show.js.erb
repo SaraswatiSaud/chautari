@@ -1,0 +1,3 @@
+$('main.container').html("<%=j render 'show' %>");
+history.pushState({turbolinks: true, url: '<%= category_path(@category) %>'}, null, '<%= category_path(@category) %>');
+document.title = '<%= title @title %>';

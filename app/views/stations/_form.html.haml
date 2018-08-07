@@ -15,6 +15,11 @@
     .col-md-12.form-group
       = f.label :tagline
       = f.text_field :tagline, class: 'form-control form-control-sm'
+
+    .col-md-12.form-group
+      = f.label :category_ids, 'Select Genre'
+      %div= f.select :category_ids, Category.top_level.order(:title).collect{|l| [l.title, l.id]}, {}, size: 6, multiple: true, class: 'form-control form-control-sm', required: true
+
     .col-md-12.form-group
       = f.label :description
       = f.text_area :description, class: 'form-control form-control-sm', rows: 5

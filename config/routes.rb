@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :categories
+  resources :categories, path: :genres
   devise_for :users
 
   root to: 'static_pages#home'

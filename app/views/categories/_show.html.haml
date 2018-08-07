@@ -1,0 +1,34 @@
+- set_meta_tags title: "#{@category.title} Radio Stations | Stream Radio Online | Jharko",
+                description: "Listen to #{@category.title} radio radio stations from around the globe.",
+                keywords: "#{@category.title},radio,stream radio,listen radio,jharko,online radio"
+
+%h1.h2.mb-3.pb-2.font-weight-light.border-bottom
+  #{@category.title} Radio Stations
+  - if user_signed_in? && current_user.is_admin?
+    = link_to 'Edit', edit_category_path(@category), class: 'btn btn-primary float-right'
+    = link_to 'Back', categories_path, class: 'btn btn-primary float-right'
+
+- if @stations.any?
+  .row
+    .col-md-8
+      - @stations.each do |station|
+        .media.form-group
+          .media-left= image_tag(station.logo_url, class: 'border mr-3', size: '60x60', alt: station.name)
+          .media-body
+            = link_to station.name, station, remote: true
+            %div= station.country_name
+
+      = paginate @stations, window: 1, remote: true
+
+    .col-md-4
+      %h5.mb-3.pb-2.border-bottom Most Popular in #{@category.title}
+
+      - @most_popular.each do |station|
+        .media.form-group
+          .media-left= image_tag(station.logo_url, class: 'border mr-3', size: '60x60', alt: station.name)
+          .media-body
+            = link_to station.name, station, remote: true
+            %div= station.country_name
+
+- else
+  No stations present.

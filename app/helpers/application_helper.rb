@@ -52,4 +52,8 @@ module ApplicationHelper
 
     content_tag(:a, name, html_options, &block)
   end
+
+  def genre_links(names)
+    names.split(',').collect { |n| link_to(n, "/genres/#{n.strip.parameterize}", remote: true) }.join(',').html_safe
+  end
 end

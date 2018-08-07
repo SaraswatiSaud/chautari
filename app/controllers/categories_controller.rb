@@ -5,13 +5,16 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @title = 'Radio Stations Categories'
-    @categories = Category.order(:title).page params[:page]
+    @categories = Category.order(:title)
   end
 
   # GET /categories/1
   # GET /categories/1.json
   def show
+    @title = "#{@category.title} Radio Stations"
+    @stations = @category.stations.page params[:page]
+
+    @most_popular = @category.stations.order(impressions_count: :desc).limit(10)
   end
 
   # GET /categories/new
@@ -66,7 +69,7 @@ class CategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
-      @category = Category.find(params[:id])
+      @category = Category.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

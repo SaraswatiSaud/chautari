@@ -1,0 +1,22 @@
+- set_meta_tags title: "Find Radio Stations by Genre | Stream Radio Online | Jharko",
+                description: 'Find local radio stations by genre - such as - Adult Contemporary, Classic Rock, Classical, Hip Hop, Jazz, News and more.',
+                keywords: default_keywords
+
+%h1.h2.mb-3.pb-2.font-weight-light.border-bottom
+  By Genre
+  - if user_signed_in? && current_user.is_admin?
+    = link_to 'New Genre', new_category_path, class: 'btn btn-primary float-right'
+
+- if @categories.present?
+  .row
+    - @categories.in_groups_of(@categories.size/3, false) do |group|
+      .col-md-4
+        - group.each do |category|
+          .form-group
+            = link_to category.title, category, remote: true
+            - if user_signed_in? && current_user.is_admin?
+              = link_to 'Edit', edit_category_path(category)
+              = link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
+
+- else
+  .text-danger No categories present.

@@ -110,7 +110,9 @@ class StationsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def station_params
     params.require(:station).permit(
-      :name, :tagline, :description, :country_id, :language_id, :slug, :logo, :website, :twitter, :facebook, :address, :contact, :email,
+      :name, :tagline, :description, :country_id, :language_id, :slug, :logo,
+      :website, :twitter, :facebook, :address, :contact, :email,
+      category_ids: [],
       streams_attributes: [ :id, :url, :_destroy ]
     )
   end
