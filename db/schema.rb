@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_18_203558) do
+ActiveRecord::Schema.define(version: 2018_08_09_200501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,17 @@ ActiveRecord::Schema.define(version: 2018_07_18_203558) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "station_id"
+    t.string "body"
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["station_id"], name: "index_reviews_on_station_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "stations", force: :cascade do |t|
     t.string "name"
     t.string "slug"
@@ -106,6 +117,7 @@ ActiveRecord::Schema.define(version: 2018_07_18_203558) do
     t.bigint "country_id"
     t.integer "impressions_count", default: 0
     t.integer "status", default: 0, null: false
+    t.integer "reviews_count", default: 0
     t.index ["country_id"], name: "index_stations_on_country_id"
     t.index ["language_id"], name: "index_stations_on_language_id"
   end

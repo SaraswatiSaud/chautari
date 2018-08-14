@@ -9,4 +9,10 @@ class User < ApplicationRecord
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: { scope: :email }
   validates :password, presence: true, length: { minimum: 6 }
+
+  has_many :reviews, dependent: :destroy
+
+  def reviewed?(station)
+    reviews.find_by(station_id: station.id).present?
+  end
 end

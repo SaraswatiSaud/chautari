@@ -9,6 +9,7 @@ class Station < ApplicationRecord
   before_destroy { categories.clear }
 
   has_many :streams, dependent: :destroy
+  has_many :reviews, dependent: :destroy
   belongs_to :language
   belongs_to :country
 
@@ -42,6 +43,10 @@ class Station < ApplicationRecord
 
   def active_streams
     streams.active
+  end
+
+  def active_reviews
+    reviews.active
   end
 
   def full_address

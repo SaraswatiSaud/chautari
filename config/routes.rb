@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     collection do
       get 'player_close'
     end
+
+    resources :reviews, only: [:new, :create, :destroy]
   end
 
   resources :categories, path: :genres

@@ -1,0 +1,27 @@
+%h3.h4.font-weight-light.form-group
+  #reviews= "#{station.name} Reviews"
+  = link_to 'Leave Review', new_station_review_path(station), class: 'btn btn-secondary float-right' unless user_signed_in?
+
+- if user_signed_in?
+  .row
+    .col-md-12.form-group
+      - if current_user.reviewed?(station)
+        .text-muted You have already reviewed this station.
+      - else
+        - review = station.reviews.new
+        = form_for review, url: station_reviews_path(station) do |f|
+          .form-group
+            = f.text_area :body, rows: 4, placeholder: 'Write your review here...', class: 'form-control'
+          = f.submit 'Save Review', class: 'btn btn-primary'
+
+.row
+  .col-md-12.form-group
+    - if station.active_reviews.any?
+      - station.reviews.each do |review|
+        - next if review.new_record?
+        .form-group
+          %em.small.text-muted= "#{review.user_email} on #{review.created_at.to_date}"
+          %p= review.body
+
+    - else
+      This station has no reviews yet.
