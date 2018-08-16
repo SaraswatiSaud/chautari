@@ -9,7 +9,7 @@ class LanguagesController < ApplicationController
 
   def show
     @title = "#{@language.title} Radio Stations"
-    @stations = @language.stations.page params[:page]
+    @stations = @language.stations.active.page params[:page]
   end
 
   # GET /languages/new

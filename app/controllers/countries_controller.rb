@@ -11,9 +11,11 @@ class CountriesController < ApplicationController
   # GET /countries/1.json
   def show
     @title = "#{@country.name} Radio Stations"
-    @stations = @country.stations.page params[:page]
 
-    @most_popular = @country.stations.order(impressions_count: :desc).limit(10)
+    active_stations = @country.stations.active
+    @stations = active_stations.page params[:page]
+
+    @most_popular = active_stations.order(impressions_count: :desc).limit(10)
   end
 
   # GET /countries/new

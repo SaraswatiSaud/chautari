@@ -12,9 +12,11 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   def show
     @title = "#{@category.title} Radio Stations"
-    @stations = @category.stations.page params[:page]
 
-    @most_popular = @category.stations.order(impressions_count: :desc).limit(10)
+    active_stations = @category.stations.active
+    @stations = active_stations.page params[:page]
+
+    @most_popular = active_stations.order(impressions_count: :desc).limit(10)
   end
 
   # GET /categories/new
