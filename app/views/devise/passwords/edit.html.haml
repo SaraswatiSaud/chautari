@@ -10,7 +10,7 @@
         %br/
       = f.password_field :password, placeholder: 'Password', autofocus: true, autocomplete: "off", class:"form-control"
     .form-group
-      = f.password_field :password_confirmation, placeholder: 'Confirm new password' autocomplete: "off", class:"form-control"
+      = f.password_field :password_confirmation, placeholder: 'Confirm new password', autocomplete: "off", class:"form-control"
     .actions
       = f.submit "Change my password", class: 'button btn btn-primary col-md-12'
   = render "devise/shared/links"
