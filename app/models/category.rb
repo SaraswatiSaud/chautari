@@ -5,4 +5,8 @@ class Category < ApplicationRecord
 
   extend FriendlyId
   friendly_id :title, use: :slugged
+
+  def children
+    Category.where(ancestry: self.id)
+  end
 end

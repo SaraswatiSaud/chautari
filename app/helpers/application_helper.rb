@@ -56,4 +56,16 @@ module ApplicationHelper
   def genre_links(names)
     names.split(',').collect { |n| link_to(n, "/genres/#{n.strip.parameterize}", remote: true) }.join(',').html_safe
   end
+
+  def category_options
+    parents = Category.top_level.order(:title)
+    categories = []
+    parents.each do |parent|
+      categories << [parent.title, parent.id]
+      parent.children.each do |child|
+        categories << ["&nbsp; &nbsp; -- #{child.title}".html_safe, child.id]
+      end
+    end
+    categories
+  end
 end
