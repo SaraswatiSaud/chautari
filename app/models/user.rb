@@ -15,4 +15,8 @@ class User < ApplicationRecord
   def reviewed?(station)
     reviews.find_by(station_id: station.id).present?
   end
+
+  def full_name
+    [first_name, last_name].join(' ')
+  end
 end

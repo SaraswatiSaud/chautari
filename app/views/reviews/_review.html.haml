@@ -20,7 +20,7 @@
       - station.reviews.each do |review|
         - next if review.new_record?
         .form-group
-          %em.small.text-muted= "#{review.user_email} on #{review.created_at.to_date}"
+          %em.small.text-muted= "By <b>#{review.user_full_name}</b> on #{review.created_at.to_date}".html_safe
           %p= review.body
 
     - else
