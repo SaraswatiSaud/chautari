@@ -9,6 +9,7 @@ class User < ApplicationRecord
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: { scope: :email }
   validates :password, presence: true, length: { minimum: 6 }
+  validates :first_name, :last_name, presence: true
 
   has_many :reviews, dependent: :destroy
 
