@@ -42,11 +42,15 @@ class Station < ApplicationRecord
   end
 
   def active_streams
-    streams.active
+    @active_streams ||= streams.active
   end
 
   def active_reviews
-    reviews.active
+    @active_reviews ||= reviews.active
+  end
+
+  def average_rating
+    @average_rating ||= get_average_rating
   end
 
   def full_address
@@ -69,6 +73,10 @@ class Station < ApplicationRecord
     @meta_keywords ||= join_array([name, tagline, 'free radio', categories_names, 'stream music', full_address, language_title.to_s + ' radio'].flatten)
   end
 
+  def refresh_reviews_ratings_count
+    update(reviews_count: active_reviews.size, average_rating: average_rating)
+  end
+
   private
 
   def default_meta_desc
@@ -84,5 +92,11 @@ class Station < ApplicationRecord
 
   def strip_whitespace
     self.name.try(:strip!)
+  end
+
+  def get_average_rating
+    ratings_sum = active_reviews.pluck(:rating).sum
+    count = active_reviews.size
+    count == 0 ? 0 : (ratings_sum.to_f / count)
   end
 end

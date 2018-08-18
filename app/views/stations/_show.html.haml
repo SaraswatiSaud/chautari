@@ -6,6 +6,9 @@
                   image: image_url(@station.logo_url),
                   description: @station.meta_desc }
 
+= javascript_include_tag 'jquery.barrating.min.js'
+= stylesheet_link_tag    'fontawesome-stars'
+
 .row
   .col-md-8
     .row
@@ -28,10 +31,22 @@
               %div= @station.tagline
 
             - cnames = @station.categories_names
-            - if cnames.present?
-              %small.text-muted= genre_links(cnames)
-
-            %small.text-muted= "| <a href=\"#reviews\">Reviews<a/>: #{@station.reviews_count}".html_safe
+            %ul.nav.small.lh-25
+              - if cnames.present?
+                %li.nav-item.text-muted.pr-2= genre_links(cnames) + '&nbsp; |'.html_safe
+              %li.nav-item.text-muted.pr-2= "<a href=\"#reviews\">Reviews<a/>: #{@station.reviews_count} &nbsp; |".html_safe
+              %li.nav-item.text-muted.pr-2= "<a href=\"#average_rating\">Average Rating<a/>:".html_safe
+              %li.nav-item.text-muted#average_rating_li
+                - if @station.average_rating.positive?
+                  = select_tag :average_rating_field, options_for_select((1..5).to_a)
+                  :javascript
+                    $('#average_rating_field').barrating({
+                      theme: 'fontawesome-stars',
+                      initialRating: #{@station.average_rating},
+                      readonly: true
+                    });
+                - else
+                  %strong 0.0
 
         = render 'stream', station: @station
 
@@ -74,7 +89,7 @@
 
   .col-md-4
     %h5.mb-3.pb-2.border-bottom Similar Stations
-    %h2.small.pb-2.lh-normal Listen to #{@station.name} live or stream radio stations similar to #{@station.name}.
+    %h2.small.pb-2.lh-15 Listen to #{@station.name} live or stream radio stations similar to #{@station.name}.
     #similar_stations
       :javascript
         $.get("#{similar_station_path(@station)}");

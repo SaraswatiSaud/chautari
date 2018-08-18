@@ -8,16 +8,24 @@
       - if current_user.reviewed?(station)
         .text-muted You have already reviewed this station.
       - else
-        - review = station.reviews.new
-        = form_for review, url: station_reviews_path(station) do |f|
-          .form-group
-            = f.text_area :body, rows: 4, placeholder: 'Write your review here...', class: 'form-control'
-          = f.submit 'Save Review', class: 'btn btn-primary'
+        %h6.border-bottom.pb-2.mt-3.mb-4 Add Your Review
+        .form-group
+          - review = station.reviews.new
+          = form_for review, url: station_reviews_path(station) do |f|
+            %ul.nav
+              %li.nav-item.pr-3.pb-2 Rate this station:
+              %li.nav-item.pb-2= f.select :rating, (1..5).to_a
+              :javascript
+                $('#review_rating').barrating({ theme: 'fontawesome-stars' });
+
+            .form-group
+              = f.text_area :body, rows: 4, placeholder: 'Write your review here...', class: 'form-control'
+            = f.submit 'Save Review', class: 'btn btn-primary'
 
 .row
   .col-md-12.form-group
     - if station.active_reviews.any?
-      - station.reviews.each do |review|
+      - station.active_reviews.each do |review|
         - next if review.new_record?
         .form-group
           %em.small.text-muted= "By <b>#{review.user_full_name}</b> on #{review.created_at.to_date}".html_safe

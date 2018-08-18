@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_16_014113) do
+ActiveRecord::Schema.define(version: 2018_08_18_034932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 2018_08_16_014113) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "rating", default: 0
     t.index ["station_id"], name: "index_reviews_on_station_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
@@ -118,6 +119,7 @@ ActiveRecord::Schema.define(version: 2018_08_16_014113) do
     t.integer "impressions_count", default: 0
     t.integer "status", default: 0, null: false
     t.integer "reviews_count", default: 0
+    t.decimal "average_rating", precision: 6, scale: 2, default: "0.0"
     t.index ["country_id"], name: "index_stations_on_country_id"
     t.index ["language_id"], name: "index_stations_on_language_id"
   end

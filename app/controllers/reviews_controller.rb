@@ -25,12 +25,13 @@ class ReviewsController < ApplicationController
   end
 
   private
+  
   def set_station
     @station = Station.friendly.find(params[:station_id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def review_params
-    params.require(:review).permit(:body)
+    params.require(:review).permit(:body, :rating)
   end
 end
