@@ -8,8 +8,16 @@ module StationsHelper
       "image": ENV['ROOT_URL'] + station.logo_url,
       "address": station.full_address,
       "priceRange": "-",
-      "telephone": "-"
+      "telephone": "-",
     }
+
+    if station.active_reviews.any?
+      data["aggregateRating"] = {
+        "@type": "AggregateRating",
+        "ratingValue": station.average_rating,
+        "reviewCount": station.reviews_count
+      }
+    end
     javascript_tag data.to_json, type: 'application/ld+json'
   end
 end
