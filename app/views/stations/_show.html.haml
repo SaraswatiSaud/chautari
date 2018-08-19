@@ -12,7 +12,7 @@
 = google_structured_data @station
 
 .row
-  .col-md-8
+  .col-md-8{itemscope: true, itemtype: 'http://schema.org/RadioStation'}
     .row
       .col-md-12
         %h5.mb-3.pb-2.border-bottom
@@ -24,11 +24,11 @@
             = link_to '< Back', request.headers['HTTP_REFERER'] || root_path, remote: true, class: 'btn btn-default btn-sm'
 
     .row
-      .col-md-3.form-group= image_tag(@station.logo_url, class: 'border img-fluid', alt: @station.name)
+      .col-md-3.form-group= image_tag(@station.logo_url, class: 'border img-fluid', alt: @station.name, itemprop: 'image')
       .col-md-9.form-group
         .row
           .col-md-12.form-group
-            %h1.h2.font-weight-light= @station.name
+            %h1.h2.font-weight-light{itemprop: 'name'}= @station.name
             - if @station.tagline?
               %div= @station.tagline
 
@@ -36,9 +36,10 @@
             %ul.nav.small.lh-25
               - if cnames.present?
                 %li.nav-item.text-muted.pr-2= genre_links(cnames) + '&nbsp; |'.html_safe
-              %li.nav-item.text-muted.pr-2= "<a href=\"#reviews\">Reviews<a/>: #{@station.reviews_count} &nbsp; |".html_safe
-              %li.nav-item.text-muted.pr-2= "<a href=\"#average_rating\">Average Rating<a/>:".html_safe
-              %li.nav-item.text-muted#average_rating_li
+              %li.nav-item.text-muted.pr-2= "<a href=\"#reviews\">Reviews:</a> <span itemprop=\"reviewCount\">#{@station.reviews_count}</span> &nbsp; |".html_safe
+              %li.nav-item.text-muted.pr-2= "<a href=\"#average_rating\">Average Rating:</a>".html_safe
+              %li.nav-item.text-muted.rating_stars{itemprop: 'aggregateRating', itemscope:true, itemtype: 'http://schema.org/AggregateRating'}
+                %span.d-none{itemprop: 'ratingValue'}= @station.average_rating
                 - if @station.average_rating.positive?
                   = select_tag :average_rating_field, options_for_select((1..5).to_a)
                   :javascript
@@ -58,12 +59,12 @@
 
     - if @station.description?
       .row
-        .col-md-12.form-group= @station.description
+        .col-md-12.form-group{itemprop: 'description'}= @station.description
 
     .row
       - country = link_to @station.country_name, country_path(@station.country)
       .col-md-12.small Location
-      .col-md-12.form-group= [@station.address, country].compact.reject(&:empty?).join(', ').html_safe
+      .col-md-12.form-group{itemprop: 'address'}= [@station.address, country].compact.reject(&:empty?).join(', ').html_safe
 
     - if @station.website?
       .row

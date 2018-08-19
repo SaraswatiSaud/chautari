@@ -25,11 +25,27 @@
 .row
   .col-md-12.form-group
     - if station.active_reviews.any?
-      - station.active_reviews.each do |review|
-        - next if review.new_record?
-        .form-group
-          %em.small.text-muted= "By <b>#{review.user_full_name}</b> on #{review.created_at.to_date}".html_safe
-          %p= review.body
+      %div{itemprop: 'review', itemscope: true, itemtype: 'http://schema.org/Review'}
+        - station.active_reviews.each do |review|
+          - next if review.new_record?
+          .form-group.rating_stars
+            %ul.nav
+              %li.nav-item.pr-3
+                %em.small.text-muted
+                  = "By <b itemprop=\"author\">#{review.user_full_name}</b>".html_safe
+                  = " on <span itemprop=\"datePublished\" content=\"#{review.created_at.to_date.to_s}\">#{review.created_at.to_date}</span>".html_safe
+              %li.nav-item{itemprop: 'reviewRating', itemscope: true, itemtype: 'http://schema.org/Rating'}
+                %meta{itemprop: 'worstRating', content: '1'}
+                %span.d-none{itemprop: 'ratingValue'}= @station.average_rating
+                %meta{itemprop: 'bestRating', content: '5'}
+                = select_tag :average_rating, options_for_select((1..5).to_a), id: "rating#{review.id}"
+                :javascript
+                  $('#rating#{review.id}').barrating({
+                    theme: 'fontawesome-stars',
+                    initialRating: #{review.rating},
+                    readonly: true
+                  });
+            %p{itemprop: 'description'}= review.body
 
     - else
       This station has no reviews yet.

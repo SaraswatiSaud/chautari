@@ -9,6 +9,11 @@ module StationsHelper
       "address": station.full_address,
       "priceRange": "-",
       "telephone": "-",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": station.average_rating,
+        "reviewCount": station.reviews_count
+      }
     }
     javascript_tag data.to_json, type: 'application/ld+json'
   end
