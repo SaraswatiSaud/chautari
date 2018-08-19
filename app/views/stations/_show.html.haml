@@ -33,13 +33,12 @@
               %div= @station.tagline
 
             - cnames = @station.categories_names
-            %ul.nav.small.lh-25{itemprop: 'aggregateRating', itemscope:true, itemtype: 'http://schema.org/AggregateRating'}
+            %ul.nav.small.lh-25
               - if cnames.present?
                 %li.nav-item.text-muted.pr-2= genre_links(cnames) + '&nbsp; |'.html_safe
-              %li.nav-item.text-muted.pr-2= "<a href=\"#reviews\">Reviews:</a> <span itemprop=\"reviewCount\">#{@station.reviews_count}</span> &nbsp; |".html_safe
+              %li.nav-item.text-muted.pr-2= "<a href=\"#reviews\">Reviews:</a> #{@station.reviews_count} &nbsp; |".html_safe
               %li.nav-item.text-muted.pr-2= "<a href=\"#average_rating\">Average Rating:</a>".html_safe
               %li.nav-item.text-muted.rating_stars
-                %span.d-none{itemprop: 'ratingValue'}= @station.average_rating
                 - if @station.average_rating.positive?
                   = select_tag :average_rating_field, options_for_select((1..5).to_a)
                   :javascript
