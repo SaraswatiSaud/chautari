@@ -1,5 +1,5 @@
 class StationsController < ApplicationController
-  before_action :authenticate_admin!, except: [:new, :create, :index, :show, :play, :player_close, :similar, :thankyou]
+  before_action :authenticate_admin!, except: [:new, :create, :index, :show, :play, :playing_now, :player_close, :similar, :thankyou]
   before_action :set_station, only: [:show, :edit, :update, :destroy, :play, :similar, :playing_now, :thankyou]
 
   # rescue_from ActiveRecord::RecordNotFound, with: :invalid_station
