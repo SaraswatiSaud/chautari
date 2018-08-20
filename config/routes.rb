@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get '/404', to: 'errors#not_found', via: :all
   get '/422', to: 'errors#unacceptable', via: :all
   get '/500', to: 'errors#internal_error', via: :all

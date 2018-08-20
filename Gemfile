@@ -71,6 +71,7 @@ gem 'font-awesome-rails'
 gem 'meta-tags'
 gem 'impressionist'
 gem 'mailjet'
+gem 'rails_admin', '~> 1.3'
 
 gem 'shoutout', github: 'dirble/shoutout'
 
