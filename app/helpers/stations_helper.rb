@@ -7,7 +7,6 @@ module StationsHelper
       "url": station_url(station),
       "image": ENV['ROOT_URL'] + station.logo_url,
       "address": station.full_address,
-      "priceRange": "-",
       "telephone": "-",
     }
 
