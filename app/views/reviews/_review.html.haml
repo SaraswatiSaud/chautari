@@ -26,7 +26,7 @@
   .col-md-12.form-group
     - if station.active_reviews.any?
       %div{itemprop: 'review', itemscope: true, itemtype: 'http://schema.org/Review'}
-        - station.active_reviews.each do |review|
+        - station.active_reviews.order(id: :desc).each do |review|
           - next if review.new_record?
           .form-group.rating_stars
             %ul.nav
