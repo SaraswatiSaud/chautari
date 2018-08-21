@@ -3,5 +3,15 @@
     .media.border
       = image_tag(station.logo_url, class: 'border-right mr-3', size: '90x90', alt: station.name)
       .media-body.py-2.d-inline-block.pr-2.width-50.text-nowrap.text-truncate
-        %h5.mt-0.text-nowrap.text-truncate= station.name
-        %span.h6.text-muted= station.country_name
+        %h5.mt-0.mb-0.text-nowrap.text-truncate= station.name
+        %small.text-muted= station.country_name
+
+        - if station.present? && station.average_rating.positive?
+          .rating_stars
+            = select_tag :average_rating_field, options_for_select((1..5).to_a), class: 'average_rating'
+            :javascript
+              $('.average_rating').barrating({
+                theme: 'fontawesome-stars',
+                initialRating: #{station.average_rating},
+                readonly: true
+              });
