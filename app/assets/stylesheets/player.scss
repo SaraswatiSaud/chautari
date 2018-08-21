@@ -18,6 +18,10 @@ $red: #dd0e34;
     border-top: 2px solid #dc3545;
     padding: 1rem;
     .player_close { font-size: 1.5em; }
+    .plyr__controls { justify-content: flex-start; }
+    .plyr__controls > .plyr__control:first-child, .plyr__controls > .plyr__control:first-child + [data-plyr=pause] {
+      margin-right: unset;
+    }
   }
 }
 
