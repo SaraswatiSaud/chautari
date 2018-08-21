@@ -37,7 +37,9 @@ class ApplicationController < ActionController::Base
     return unless Rails.env.production?
 
     if ENV['OTHER_DOMAINS'].split(',').any?(request.host)
-      redirect_to "#{ENV['ROOT_URL']}/#{request.fullpath}", status: :moved_permanently
+      url = ENV['ROOT_URL']
+      url += request.fullpath if request.fullpath.present?
+      redirect_to url, status: :moved_permanently
     end
   end
 end
