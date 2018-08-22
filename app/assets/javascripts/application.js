@@ -16,4 +16,5 @@
 //= require popper
 //= require bootstrap
 //= require plyr
+//= require cookies_eu
 //= require custom

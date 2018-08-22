@@ -1,3 +1,5 @@
+$red: #dd0e34;
+
 html {
   min-height: 100%;
   position: relative;
@@ -9,8 +11,8 @@ body {
   line-height: 1.5;
 }
 
-a { color: #dd0e34; }
-a:hover { color: #f55c78; text-decoration: none; }
+a { color: $red; }
+a:hover { color: lighten($red, 20%); text-decoration: none; }
 .form-control:focus { box-shadow: none; }
 
 .footer {
@@ -87,4 +89,14 @@ a:hover { color: #f55c78; text-decoration: none; }
 }
 .rating_stars .br-theme-fontawesome-stars .br-widget a {
   font-size: 14px;
+}
+
+.cookies-eu {
+  padding: 10px 20px;
+  background: lighten(black, 90%);
+
+  .cookies-eu-button-holder .cookies-eu-ok {
+    font-size: 12px;
+    padding: 4px 16px;
+  }
 }
