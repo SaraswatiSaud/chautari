@@ -60,12 +60,17 @@ class StationsController < ApplicationController
   # PATCH/PUT /stations/1.json
   def update
     respond_to do |format|
-      if @station.update(station_params)
-        format.html { redirect_to @station, notice: 'Station was successfully updated.' }
-        format.json { render :show, status: :ok, location: @station }
-      else
+      begin
+        if @station.update(station_params)
+          format.html { redirect_to @station, notice: 'Station was successfully updated.' }
+          format.json { render :show, status: :ok, location: @station }
+        else
+          format.html { render :edit }
+          format.json { render json: @station.errors, status: :unprocessable_entity }
+        end
+      rescue => e
+        flash.now[:alert] = "<b>Error: </b>#{e}".html_safe
         format.html { render :edit }
-        format.json { render json: @station.errors, status: :unprocessable_entity }
       end
     end
   end

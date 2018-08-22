@@ -31,14 +31,15 @@ class Station < ApplicationRecord
       .or(Station.where(language_id: language_id))
       .or(Station.where(categories: categories))
       .where.not(id: self.id)
-      .order('RANDOM()')
+      .order(impressions_count: :desc)
       .limit(5)
   end
 
   def playing_now
-    song = streams.first.icy_metadata if streams.any?
-    playing_now = song.now_playing if song.present?
-    playing_now.present? ? "Playing Now: #{playing_now}" : country_name
+    song = active_streams.first.try(:icy_metadata)
+    return unless song.present?
+
+    "Playing Now: #{song.now_playing}"
   end
 
   def active_streams

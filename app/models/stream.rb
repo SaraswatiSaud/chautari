@@ -3,6 +3,8 @@ class Stream < ApplicationRecord
   before_validation :strip_whitespace
   enum status: [:pending, :active]
 
+  before_save :check_stream
+
   def icy_metadata
     stream = Shoutout::Stream.new(url)
     Timeout::timeout(5) do
@@ -27,7 +29,17 @@ class Stream < ApplicationRecord
   end
 
   private
+
   def strip_whitespace
     self.url.try(:strip!)
+  end
+
+  def check_stream
+    data = self.icy_metadata
+    raise "Invalid or unsupported Stream url - #{self.url}." unless data.present?
+
+    self.content_type = data.content_type
+    self.bitrate = data.bitrate
+    self.status = 1
   end
 end
