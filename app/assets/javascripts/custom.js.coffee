@@ -1,6 +1,6 @@
 $(document).on 'turbolinks:load', ->
   $('.spinner').hide()
-  player = new Plyr('#player')
+  # player = new Plyr('#player')
 
   # Smooth Scroll - Select all links with hashes
   $('a[href*="#"]').not('[href="#"]').not('[href="#0"]').click (event) ->

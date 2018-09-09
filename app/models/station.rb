@@ -39,7 +39,7 @@ class Station < ApplicationRecord
     song = active_streams.first.try(:icy_metadata)
     return unless song.present?
 
-    "Playing Now: #{song.now_playing}"
+    playing_now.present? ? "Playing Now: #{playing_now}" : country_name
   end
 
   def active_streams

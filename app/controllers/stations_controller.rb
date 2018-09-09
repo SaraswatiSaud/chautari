@@ -86,7 +86,7 @@ class StationsController < ApplicationController
   end
 
   def play
-    session[:stream] = @station.streams.try(:first).try(:attributes)
+    session[:stream] = @station.active_streams.map{ |s| {station_id: @station.id, url: s.url, content_type: (s.content_type.present? ? s.content_type : 'audio/mpeg')} }
   end
 
   def playing_now

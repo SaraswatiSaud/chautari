@@ -1,6 +1,5 @@
 - if session[:stream].present?
-  - session[:stream].symbolize_keys!
-  - station = Station.find_by(id: session[:stream][:station_id])
+  - station = Station.find_by(id: session[:stream].first[:station_id])
   - if station.present?
     #inner
       .container
@@ -16,8 +15,17 @@
                   playingNow = setInterval(function(){ $.get("#{playing_now_station_path(station)}") }, 20000);
 
           .col-md-5
-            - if session[:stream][:url].present?
-              %audio{controls: true, id: 'player', preload: 'none', 'data-plyr-config': '{ "invertTime": false, "toggleInvert": false }'}
+            - if session[:stream].present?
+
+              - if (session[:stream].size == 1) && (session[:stream].first[:content_type] == 'audio/aacp')
+                -# Hack for playing aac file
+                %audio{controls: true, src: "#{session[:stream].first[:url]}"}
+
+              - else
+                %audio{controls: true, id: 'player', preload: 'none'}
+                  - session[:stream].each do |st|
+                    %source{src: "#{st[:url]}", type: "#{st[:content_type]}"}
+
             - else
               .small.text-danger
                 .fa.fa-exclamation-triangle
@@ -26,18 +34,3 @@
           .col-md-2
             = link_to player_close_stations_path, remote: true, title: 'Close Player' do
               .fa.fa-times.mt-08.pull-right.player_close
-
-
-    :javascript
-      player = new Plyr('#player', {
-        controls: ['play-large', 'play', 'current-time', 'mute', 'volume']
-      });
-      player.source = {
-        type: 'audio',
-        title: "#{station.name}",
-        sources: [{
-          src: "#{session[:stream][:url].strip}",
-          type: "#{session[:stream][:content_type].try(:strip) || 'audio/mpeg'}",
-        }]
-      };
-      player.play();
