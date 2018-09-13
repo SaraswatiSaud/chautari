@@ -2,65 +2,70 @@
   .form-group= errors_for @station
 
   .row
-    .col-md-4.form-group
+    .col-md-6.form-group
       .media
         .media-left.media-middle= image_tag(f.object.logo_url, class: 'border mr-3', size: '68x68')
         .media-body
-          = f.label :logo, 'Radio Station Logo'
-          = f.file_field :logo, class: 'form-control form-control-sm'
-    .col-md-8.form-group
-      = f.label :name, 'Name*'
-      = f.text_field :name, class: 'form-control form-control-sm', placeholder: 'Enter Name of radio station...', required: true
+          %strong= f.label :logo, 'Radio Station Logo'
+          = f.file_field :logo, class: 'form-control'
+    .col-md-6.form-group
+      %strong= f.label :name, 'Name*'
+      = f.text_field :name, class: 'form-control', placeholder: 'Enter Name of radio station...', required: true
   .row
     .col-md-12.form-group
-      = f.label :tagline
-      = f.text_field :tagline, class: 'form-control form-control-sm', placeholder: 'Enter tagline if you have any...'
+      %strong= f.label :tagline
+      = f.text_field :tagline, class: 'form-control', placeholder: 'Enter tagline if you have any...'
 
     .col-md-12.form-group
-      = f.label :category_ids, 'Select Genre (max. 3)'
-      %div= f.select :category_ids, category_options, {}, size: 6, multiple: true, class: 'form-control form-control-sm', required: true
+      %strong= f.label :category_ids, 'Select Genre (max. 3)*'
+      %div= f.select :category_ids, category_options, {}, size: 6, multiple: true, class: 'form-control', required: true
 
     .col-md-12.form-group
-      = f.label :description
-      = f.text_area :description, class: 'form-control form-control-sm', rows: 5, placeholder: 'Enter brief introduction about radio station here...'
+      %strong= f.label :description
+      = f.text_area :description, class: 'form-control', rows: 5, placeholder: 'Enter brief introduction about radio station here...'
   .row
-    .col-md-3.form-group
-      = f.label :language_id, 'Language*'
-      %div= f.select :language_id, Language.all.collect{|l| [l.title, l.id]}, {include_blank: 'Select Language'}, class: 'form-control form-control-sm', required: true
-    .col-md-3.form-group
-      = f.label :website
-      = f.text_field :website, class: 'form-control form-control-sm', placeholder: 'Enter website url...'
-    .col-md-3.form-group
-      = f.label :facebook
-      = f.text_field :facebook, class: 'form-control form-control-sm', placeholder: 'Enter Facebook page url...'
-    .col-md-3.form-group
-      = f.label :twitter
-      = f.text_field :twitter, class: 'form-control form-control-sm', placeholder: 'Enter Twitter page url...'
+    .col-md-6.form-group
+      %strong= f.label :website
+      = f.text_field :website, class: 'form-control', placeholder: 'Enter website url...'
+    .col-md-6.form-group
+      %strong= f.label :email
+      = f.text_field :email, class: 'form-control', placeholder: 'Enter email address...'
+    .col-md-6.form-group
+      %strong= f.label :facebook
+      = f.text_field :facebook, class: 'form-control', placeholder: 'Enter Facebook page url...'
+    .col-md-6.form-group
+      %strong= f.label :twitter
+      = f.text_field :twitter, class: 'form-control', placeholder: 'Enter Twitter page url...'
+
   .row
-    .col-md-3.form-group
-      = f.label :country_id, 'Country*'
-      %div= f.select :country_id, Country.all.collect{|c| [c.name, c.id]}, {include_blank: 'Select Country'}, class: 'form-control form-control-sm', required: true
-    .col-md-3.form-group
-      = f.label :address, 'Location'
-      = f.text_field :address, class: 'form-control form-control-sm', placeholder: 'Station location...'
-    .col-md-3.form-group
-      = f.label :contact, 'Contact Address/Phone'
-      = f.text_field :contact, class: 'form-control form-control-sm', placeholder: 'Enter contact details...'
-    .col-md-3.form-group
-      = f.label :email
-      = f.text_field :email, class: 'form-control form-control-sm', placeholder: 'Enter email address...'
+    .col-md-6.form-group
+      %strong= f.label :contact, 'Contact Address/Phone'
+      = f.text_field :contact, class: 'form-control', placeholder: 'Enter contact details...'
+    .col-md-6.form-group
+      %strong= f.label :address, 'Location'
+      = f.text_field :address, class: 'form-control', placeholder: 'Station location...'
+    .col-md-6.form-group
+      %strong= f.label :language_id, 'Language*'
+      %div= f.select :language_id, Language.all.collect{|l| [l.title, l.id]}, {include_blank: 'Select Language'}, class: 'form-control', required: true
+    .col-md-6.form-group
+      %strong= f.label :country_id, 'Country*'
+      %div= f.select :country_id, Country.all.collect{|c| [c.name, c.id]}, {include_blank: 'Select Country'}, class: 'form-control', required: true
 
 
   .card.form-group
     .card-body
-      %h3.h4 Streams
+      %h3.h5.pb-3 Station Streams
       = f.fields_for :streams do |f|
         = render 'stream_fields', f: f
-      = link_to_add_fields 'Add Stream', f, :streams
+      = link_to_add_fields 'Add Stream', f, :streams, {}, class: 'btn btn-outline-danger'
+
+      %p.pt-3.text-muted
+        You can add multiple stream urls of your radio station. Click Add Stream link again to add multiple streams.
+        We only support Shoutcast v1.x, v2.x and Icecast v2.x streams and they should be public.
 
   .row
     .col-md-12.form-group
-      = f.submit 'Save', class: 'btn btn-primary', onclick: "return checkForm();"
+      = f.submit 'Submit Station', class: 'btn btn-danger', onclick: "return checkForm();"
 
 :javascript
   $("[data-form-prepend]").click(function(e) {

@@ -1,8 +1,8 @@
 .row
   .col-md-12
-    = f.label :url
+    %strong= f.label :url, 'Stream URL'
     .input-group.mb-3
-      = f.text_field :url, class: 'form-control form-control-sm'
+      = f.text_field :url, class: 'form-control'
       .input-group-append
         .input-group-text
           = f.check_box :_destroy

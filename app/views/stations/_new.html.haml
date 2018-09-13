@@ -1,3 +1,34 @@
-%h1.h2.mb-3.pb-2.font-weight-light.border-bottom Add Radio Station
+- set_meta_tags title: 'Add Radio Station - Jharko Directory',
+                description: 'Jharko is an online directory of Radio Stations around the world. You can submit your radio station and we will list your radio station in our direcotry after verification.',
+                keywords: 'Submit Internet Radio, radio directory, internet radio stations, add radio station'
 
-= render 'form'
+.row.pt-3
+  .col-md-8
+    %h1.h2.mb-3.pb-2.border-bottom Add Radio Station
+
+    %p.pb-3.text-muted
+      Jharko is an online directory of Radio Stations around the world.
+      You can submit your radio station and we will list your radio station in our
+      direcotry after verification. Please provide accurate details
+      (eg. Name, Stream URLs etc.) so verification process doesn't take long time.
+
+    = render 'form'
+
+  .col-md-4
+    %h4.mb-3.pb-2.pt-2 Why submit your radio station?
+    %p
+      Adding your station to our directory will get you more listeners. We
+      strongly suggest to provide as much information as possible about the radio
+      station, so listeners will enjoy visiting your station page.
+
+    %h4 How to create an Internet Radio Station?
+    %p
+      Creating an internet radio station is more easier than it seems. You can
+      configure ShoutCast or Icecast Streaming servers to get started. There are
+      some cloud based solutions which make setup process simple.
+    %p
+      Please visit following websites to know more about how to setup
+      an Internet Radio Station.
+    %ul
+      %li= link_to 'SOUTcast Website', 'http://www.shoutcast.com/', target: '_blank'
+      %li= link_to 'Icecast Website', 'http://icecast.org/', target: '_blank'
