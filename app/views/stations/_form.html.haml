@@ -6,49 +6,49 @@
       .media
         .media-left.media-middle= image_tag(f.object.logo_url, class: 'border mr-3', size: '68x68')
         .media-body
-          = f.label :logo
+          = f.label :logo, 'Radio Station Logo'
           = f.file_field :logo, class: 'form-control form-control-sm'
     .col-md-8.form-group
-      = f.label :name
-      = f.text_field :name, class: 'form-control form-control-sm', required: true
+      = f.label :name, 'Name*'
+      = f.text_field :name, class: 'form-control form-control-sm', placeholder: 'Enter Name of radio station...', required: true
   .row
     .col-md-12.form-group
       = f.label :tagline
-      = f.text_field :tagline, class: 'form-control form-control-sm'
+      = f.text_field :tagline, class: 'form-control form-control-sm', placeholder: 'Enter tagline if you have any...'
 
     .col-md-12.form-group
-      = f.label :category_ids, 'Select Genre'
+      = f.label :category_ids, 'Select Genre (max. 3)'
       %div= f.select :category_ids, category_options, {}, size: 6, multiple: true, class: 'form-control form-control-sm', required: true
 
     .col-md-12.form-group
       = f.label :description
-      = f.text_area :description, class: 'form-control form-control-sm', rows: 5
+      = f.text_area :description, class: 'form-control form-control-sm', rows: 5, placeholder: 'Enter brief introduction about radio station here...'
   .row
     .col-md-3.form-group
-      = f.label :language_id
+      = f.label :language_id, 'Language*'
       %div= f.select :language_id, Language.all.collect{|l| [l.title, l.id]}, {include_blank: 'Select Language'}, class: 'form-control form-control-sm', required: true
     .col-md-3.form-group
       = f.label :website
-      = f.text_field :website, class: 'form-control form-control-sm'
-    .col-md-3.form-group
-      = f.label :twitter
-      = f.text_field :twitter, class: 'form-control form-control-sm'
+      = f.text_field :website, class: 'form-control form-control-sm', placeholder: 'Enter website url...'
     .col-md-3.form-group
       = f.label :facebook
-      = f.text_field :facebook, class: 'form-control form-control-sm'
+      = f.text_field :facebook, class: 'form-control form-control-sm', placeholder: 'Enter Facebook page url...'
+    .col-md-3.form-group
+      = f.label :twitter
+      = f.text_field :twitter, class: 'form-control form-control-sm', placeholder: 'Enter Twitter page url...'
   .row
     .col-md-3.form-group
-      = f.label :country_id
+      = f.label :country_id, 'Country*'
       %div= f.select :country_id, Country.all.collect{|c| [c.name, c.id]}, {include_blank: 'Select Country'}, class: 'form-control form-control-sm', required: true
     .col-md-3.form-group
       = f.label :address, 'Location'
-      = f.text_field :address, class: 'form-control form-control-sm'
+      = f.text_field :address, class: 'form-control form-control-sm', placeholder: 'Station location...'
     .col-md-3.form-group
       = f.label :contact, 'Contact Address/Phone'
-      = f.text_field :contact, class: 'form-control form-control-sm'
+      = f.text_field :contact, class: 'form-control form-control-sm', placeholder: 'Enter contact details...'
     .col-md-3.form-group
       = f.label :email
-      = f.text_field :email, class: 'form-control form-control-sm'
+      = f.text_field :email, class: 'form-control form-control-sm', placeholder: 'Enter email address...'
 
 
   .card.form-group

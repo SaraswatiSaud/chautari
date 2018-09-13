@@ -7,25 +7,31 @@ class Stream < ApplicationRecord
 
   def icy_metadata
     stream = Shoutout::Stream.new(url)
-    Timeout::timeout(5) do
+    begin
       if stream.connect
-        OpenStruct.new(
-          name: stream.name,
-          description: stream.description,
-          genre: stream.genre,
-          notice: stream.notice,
-          bitrate: stream.bitrate,
-          is_public: stream.public?,
-          now_playing: stream.now_playing,
-          content_type: stream.content_type,
-          website: stream.website
-        )
+        options = {}
+        options[:name] = stream.name
+        options[:description] = stream.description
+        options[:genre] = stream.genre
+        options[:notice] = stream.notice
+        options[:bitrate] = stream.bitrate
+        options[:is_public] = stream.public?
+        options[:content_type] = stream.content_type
+
+        begin
+          Timeout::timeout(5) do
+            options[:website] = stream.website
+            options[:now_playing] = stream.now_playing
+          end
+        rescue
+        end
+        OpenStruct.new(options)
       end
+    rescue
+      {}
+    ensure
+      stream.disconnect
     end
-  rescue => e
-    {}
-  ensure
-    stream.disconnect
   end
 
   private

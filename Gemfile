@@ -73,7 +73,6 @@ gem 'impressionist'
 gem 'mailjet'
 gem 'rails_admin', '~> 1.3'
 gem 'cookies_eu'
-
 gem 'shoutout', github: 'dirble/shoutout'
 
 group :development do
