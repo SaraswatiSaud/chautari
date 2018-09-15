@@ -5,13 +5,4 @@
       .media-body.py-2.d-inline-block.pr-2.width-50.text-nowrap.text-truncate
         %h5.mt-0.mb-0.text-nowrap.text-truncate= station.name
         %small.text-muted= station.country_name
-
-        - if station.present? && station.average_rating.positive?
-          .rating_stars
-            = select_tag :average_rating_field, options_for_select((1..5).to_a), id: "average_rating#{station.id}"
-            :javascript
-              $("#average_rating#{station.id}").barrating({
-                theme: 'fontawesome-stars',
-                initialRating: #{station.average_rating},
-                readonly: true
-              });
+        = render 'stations/display_rating', station: station

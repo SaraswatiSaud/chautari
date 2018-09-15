@@ -17,6 +17,7 @@
             = image_tag station.logo_url, class: 'border img-fluid', alt: station.name
             = link_to station.name, station, remote: true
             %div= station.country_name
+            = render 'stations/display_rating', station: station
 
       = paginate @stations, window: 1, remote: true
 

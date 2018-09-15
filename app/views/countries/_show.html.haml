@@ -16,17 +16,7 @@
           .col-lg-3.col-sm-4.col-xs-6.form-group
             = image_tag station.logo_url, class: 'border img-fluid', alt: station.name
             = link_to station.name, station, remote: true
-
-            - if station.present? && station.average_rating.positive?
-              .rating_stars
-                = select_tag :average_rating_field, options_for_select((1..5).to_a), id: "average_rating#{station.id}"
-                :javascript
-                  $("#average_rating#{station.id}").barrating({
-                    theme: 'fontawesome-stars',
-                    initialRating: #{station.average_rating},
-                    readonly: true
-                  });
-
+            = render 'stations/display_rating', station: station
 
       = paginate @stations, window: 1, remote: true
 
