@@ -14,8 +14,7 @@
       .row
         - @stations.each do |station|
           .col-lg-3.col-sm-4.col-xs-6.form-group
-            = image_tag station.logo_url, class: 'border img-fluid', alt: station.name
-            = link_to station.name, station, remote: true
+            = station_thumb(station)
             %div= station.country_name
             = render 'stations/display_rating', station: station
 

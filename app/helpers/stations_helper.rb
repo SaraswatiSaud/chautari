@@ -19,4 +19,11 @@ module StationsHelper
     end
     javascript_tag data.to_json, type: 'application/ld+json'
   end
+
+  def station_thumb(station)
+    link_to station, remote: true do
+      concat(image_tag station.logo_url, class: 'border img-fluid', alt: station.name)
+      concat(content_tag 'span', station.name)
+    end
+  end
 end
