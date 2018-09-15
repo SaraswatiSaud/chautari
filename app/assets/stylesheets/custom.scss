@@ -100,3 +100,15 @@ a:hover { color: lighten($red, 20%); text-decoration: none; }
     padding: 4px 16px;
   }
 }
+
+.page-link {
+  color: $red;
+  &:hover { color: darken($red, 10% ) }
+}
+
+.page-item.active .page-link {
+  background-color: $red;
+  border-color: $red;
+
+  &:hover { color: lightgrey; }
+}
