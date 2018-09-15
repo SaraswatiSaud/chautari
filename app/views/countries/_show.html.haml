@@ -3,7 +3,7 @@
                 keywords: "#{@country.name},radio,stream radio,listen radio,jharko,online radio"
 
 %h1.h2.mb-3.pb-2.font-weight-light.border-bottom
-  Radio Stations from #{@country.name}
+  Radio Stations in #{@country.name}
   - if user_signed_in? && current_user.is_admin?
     = link_to 'Edit', edit_country_path(@country), class: 'btn btn-primary float-right'
     = link_to 'Back', countries_path, class: 'btn btn-primary float-right'
