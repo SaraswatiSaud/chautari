@@ -11,24 +11,18 @@
 - if @stations.any?
   .row
     .col-md-8
-      - @stations.each do |station|
-        .media.form-group
-          .media-left= image_tag(station.logo_url, class: 'border mr-3', size: '60x60', alt: station.name)
-          .media-body
+      .row
+        - @stations.each do |station|
+          .col-lg-3.col-sm-4.col-xs-6.form-group
+            = image_tag station.logo_url, class: 'border img-fluid', alt: station.name
             = link_to station.name, station, remote: true
             %div= station.country_name
 
-      = paginate @stations, window: 1, remote: true
+        = paginate @stations, window: 1, remote: true
 
     .col-md-4
       %h5.mb-3.pb-2.border-bottom Most Popular in #{@category.title}
-
-      - @most_popular.each do |station|
-        .media.form-group
-          .media-left= image_tag(station.logo_url, class: 'border mr-3', size: '60x60', alt: station.name)
-          .media-body
-            = link_to station.name, station, remote: true
-            %div= station.country_name
+      = render 'stations/most_popular', stations: @most_popular
 
 - else
   No stations present.
