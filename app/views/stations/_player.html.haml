@@ -33,16 +33,16 @@
             = link_to player_close_stations_path, remote: true, title: 'Close Player' do
               .fa.fa-times.mt-08.pull-right.player_close
 
-  :javascript
-    player = new Plyr('#player', {
-      controls: ['play-large', 'play', 'current-time', 'mute', 'volume']
-    });
-    player.source = {
-      type: 'audio',
-      title: "#{station.name}",
-      sources: [{
-        src: "#{stream[:url].strip}",
-        type: "#{stream[:content_type].try(:strip) || 'audio/mpeg'}",
-      }]
-    };
-    player.play();
+    :javascript
+      player = new Plyr('#player', {
+        controls: ['play-large', 'play', 'current-time', 'mute', 'volume']
+      });
+      player.source = {
+        type: 'audio',
+        title: "#{station.name}",
+        sources: [{
+          src: "#{stream[:url].strip}",
+          type: "#{stream[:content_type].try(:strip) || 'audio/mpeg'}",
+        }]
+      };
+      player.play();
