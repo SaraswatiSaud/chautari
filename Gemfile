@@ -63,7 +63,6 @@ gem 'jquery-rails'
 gem 'httparty'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
-gem 'kaminari'
 gem 'plyr-rails', github: 'lalusaud/plyr-rails'
 gem 'sitemap_generator'
 gem 'friendly_id', '~> 5.1.0'
@@ -74,7 +73,9 @@ gem 'mailjet'
 gem 'rails_admin', '~> 1.3'
 gem 'cookies_eu'
 gem 'shoutout', github: 'dirble/shoutout'
+gem 'pagy'
 
+gem 'bullet', group: 'development'
 group :development do
     gem 'capistrano',         require: false
     gem 'capistrano-rvm',     require: false
@@ -82,4 +83,5 @@ group :development do
     gem 'capistrano-bundler', require: false
     gem 'capistrano3-puma',   require: false
     gem 'letter_opener'
+    gem 'rack-mini-profiler', require: false
 end

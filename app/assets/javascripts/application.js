@@ -17,4 +17,5 @@
 //= require bootstrap
 //= require plyr
 //= require cookies_eu
+//= require pagy
 //= require custom

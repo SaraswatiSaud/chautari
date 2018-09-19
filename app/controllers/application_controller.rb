@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  include Pagy::Backend
   before_action :rediect_other_domains_if_any
   before_action :store_user_location!, if: :storable_location?
   after_action :set_vary_header

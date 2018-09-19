@@ -13,7 +13,7 @@ class CountriesController < ApplicationController
     @title = "#{@country.name} Radio Stations"
 
     active_stations = @country.stations.active
-    @stations = active_stations.page params[:page]
+    @pagy, @stations = pagy(active_stations)
 
     @most_popular = active_stations.order(impressions_count: :desc).limit(10)
   end

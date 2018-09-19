@@ -98,7 +98,7 @@ class StationsController < ApplicationController
   end
 
   def similar
-    @stations = @station.similar_stations
+    @stations = @station.similar_stations.includes(:country)
   end
 
   # Displays thank you page after guest adds a radio station

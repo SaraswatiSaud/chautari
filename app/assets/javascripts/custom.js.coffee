@@ -1,3 +1,4 @@
+window.addEventListener "turbolinks:load", Pagy.init
 $(document).on 'turbolinks:load', ->
   $('.spinner').hide()
   player = new Plyr('#player')

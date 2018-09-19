@@ -10,8 +10,8 @@ class LanguagesController < ApplicationController
   def show
     @title = "#{@language.title} Radio Stations"
 
-    active_stations = @language.stations.active
-    @stations = active_stations.page params[:page]
+    active_stations = @language.stations.active.includes(:country)
+    @pagy, @stations = pagy(active_stations)
 
     @most_popular = active_stations.order(impressions_count: :desc).limit(10)
   end

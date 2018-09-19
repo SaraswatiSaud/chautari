@@ -1,6 +1,7 @@
 - if @stations.present?
   = render @stations
-  .mx-auto= paginate @stations, window: 1, remote: true
+  .col-md-12
+    .mx-auto= pagy_nav_bootstrap(@pagy).html_safe
 - else
   .col-md-12
     %p.text-danger.text-center

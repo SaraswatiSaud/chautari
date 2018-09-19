@@ -2,8 +2,10 @@ class StaticPagesController < ApplicationController
   def home
     session[:query] = params[:query] || session[:query]
     @stations = Station.active.distinct.joins(:streams).order(updated_at: :desc)
+    @stations = @stations.includes(:country)
     @stations = @stations.where("name ILIKE '%#{session[:query]}%'") if session[:query].present?
-    @stations = @stations.page(params[:page])
+
+    @pagy, @stations = pagy(@stations)
   end
 
   def contact

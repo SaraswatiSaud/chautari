@@ -13,8 +13,8 @@ class CategoriesController < ApplicationController
   def show
     @title = "#{@category.title} Radio Stations"
 
-    active_stations = @category.stations.active
-    @stations = active_stations.page params[:page]
+    active_stations = @category.stations.active.includes(:country)
+    @pagy, @stations = pagy(active_stations)
 
     @most_popular = active_stations.order(impressions_count: :desc).limit(10)
   end

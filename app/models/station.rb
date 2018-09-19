@@ -50,10 +50,6 @@ class Station < ApplicationRecord
     @active_reviews ||= reviews.active
   end
 
-  def average_rating
-    @average_rating ||= get_average_rating
-  end
-
   def full_address
     @full_address ||= join_array([address, country_name])
   end
@@ -93,11 +89,5 @@ class Station < ApplicationRecord
 
   def strip_whitespace
     self.name.try(:strip!)
-  end
-
-  def get_average_rating
-    ratings_sum = active_reviews.pluck(:rating).sum
-    count = active_reviews.size
-    count == 0 ? 0 : (ratings_sum.to_f / count)
   end
 end

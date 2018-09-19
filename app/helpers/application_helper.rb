@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+  
   def default_keywords
     'free internet radio, online radio, live radio, jharko, fm, music, news'
   end
