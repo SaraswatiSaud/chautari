@@ -27,12 +27,13 @@ class Station < ApplicationRecord
   delegate :title, to: :language, prefix: true, allow_nil: true
 
   def similar_stations
-    Station.active.where(country_id: country_id)
-      .or(Station.where(language_id: language_id))
-      .or(Station.where(categories: categories))
-      .where.not(id: self.id)
-      .order(impressions_count: :desc)
-      .limit(5)
+    Station.active
+           .where(country_id: country_id)
+           .or(Station.where(language_id: language_id))
+           .or(Station.where(categories: categories))
+           .where.not(id: id)
+           .order(impressions_count: :desc)
+           .limit(5)
   end
 
   def playing_now
@@ -71,7 +72,7 @@ class Station < ApplicationRecord
   end
 
   def refresh_reviews_ratings_count
-    update(reviews_count: active_reviews.size, average_rating: average_rating)
+    update(reviews_count: active_reviews.size, average_rating: calc_ar)
   end
 
   private
@@ -88,6 +89,12 @@ class Station < ApplicationRecord
   end
 
   def strip_whitespace
-    self.name.try(:strip!)
+    name.try(:strip!)
+  end
+
+  def calc_ar
+    ratings_sum = active_reviews.pluck(:rating).sum
+    count = active_reviews.size
+    count.zero? ? 0 : (ratings_sum.to_f / count)
   end
 end
