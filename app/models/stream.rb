@@ -26,7 +26,7 @@ class Stream < ApplicationRecord
 
       regex = /server\=\>(\S+)\s(\d)/
       options[:server] = stream.inspect.delete('"').scan(regex).flatten
-    rescue SocketError, Timeout::Error, Errno::ECONNRESET, Errno::ECONNREFUSED
+    rescue SocketError, Timeout::Error, SystemCallError
       {}
     ensure
       stream.disconnect
