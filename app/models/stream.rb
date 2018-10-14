@@ -19,8 +19,10 @@ class Stream < ApplicationRecord
       options[:is_public] = stream.public?
       options[:content_type] = stream.content_type
 
-      options[:website] = stream.website
-      options[:now_playing] = stream.now_playing
+      Timeout::timeout(5) do
+        options[:website] = stream.website
+        options[:now_playing] = stream.now_playing
+      end
 
       options[:server] = stream.inspect.delete('"').scan(/server\=\>(\S+)\s(\d)/).flatten
     rescue
