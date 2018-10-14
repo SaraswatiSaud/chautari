@@ -24,7 +24,8 @@ class Stream < ApplicationRecord
         options[:now_playing] = stream.now_playing
       end
 
-      options[:server] = stream.inspect.delete('"').scan(/server\=\>(\S+)\s(\d)/).flatten
+      regex = /server\=\>(\S+)\s(\d)/
+      options[:server] = stream.inspect.delete('"').scan(regex).flatten
     rescue SocketError, Timeout::Error
       {}
     ensure
