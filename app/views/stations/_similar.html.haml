@@ -3,8 +3,8 @@
     - @stations.each do |station|
       .col-md-12.form-group
         = link_to station_path(station), remote: true do
-          .media.border
-            = image_tag(station.logo_url, class: 'p-1 mr-2 align-self-center', size: '40x40', alt: station.name)
+          .media.bg-white.rounded
+            = image_tag(station.logo_url, class: 'p-1 mr-2 align-self-center', size: '50x50', alt: station.name)
             .media-body.py-2.d-inline-block.pr-2.width-50
               %h5.m-0.text-nowrap.text-truncate= station.name
               %span.small.text-muted= station.country_name
