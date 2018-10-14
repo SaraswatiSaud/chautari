@@ -1,0 +1,9 @@
+.col-md-4.col-sm-6.form-group
+  - station = favorite.station
+  = link_to station_path(station), title: station.name, remote: true do
+    .media.border
+      = image_tag(station.logo_url, class: 'border-right mr-3', size: '90x90', alt: station.name)
+      .media-body.py-2.d-inline-block.pr-2.width-50.text-nowrap.text-truncate
+        %h5.mt-0.mb-0.text-nowrap.text-truncate= station.name
+        %small.text-muted= station.country_name
+        = render 'stations/display_rating', station: station

@@ -10,6 +10,7 @@ class Station < ApplicationRecord
 
   has_many :streams, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   belongs_to :language
   belongs_to :country
 

@@ -24,10 +24,11 @@ Rails.application.routes.draw do
       get 'player_close'
     end
 
-    resources :reviews, only: [:new, :create, :destroy]
+    resources :reviews, only: %i[new create destroy]
   end
 
   resources :categories, path: :genres
+  resources :favorites, only: %i[index create destroy]
   devise_for :users, controllers: { registrations: 'registrations' }
 
   root to: 'static_pages#home'

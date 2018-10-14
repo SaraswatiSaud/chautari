@@ -11,6 +11,7 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true
 
   has_many :reviews, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   def reviewed?(station)
     reviews.find_by(station_id: station.id).present?
