@@ -46,6 +46,6 @@ class Stream < ApplicationRecord
 
     self.content_type = data.content_type
     self.bitrate = data.bitrate
-    self.status = 1
+    self.status = data.bitrate.to_i.positive? ? 1 : 0
   end
 end
