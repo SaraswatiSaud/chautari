@@ -8,9 +8,9 @@ class Stream < ApplicationRecord
   def icy_metadata
     options = {}
     stream = Shoutout::Stream.new(url)
-    return unless stream.connect
 
     begin
+      stream.connect
       options[:name] = stream.name
       options[:description] = stream.description
       options[:genre] = stream.genre
@@ -19,13 +19,13 @@ class Stream < ApplicationRecord
       options[:is_public] = stream.public?
       options[:content_type] = stream.content_type
 
-      Timeout::timeout(5) do
+      Timeout.timeout(5) do
         options[:website] = stream.website
         options[:now_playing] = stream.now_playing
       end
 
       options[:server] = stream.inspect.delete('"').scan(/server\=\>(\S+)\s(\d)/).flatten
-    rescue
+    rescue SocketError, Timeout::Error
       {}
     ensure
       stream.disconnect
