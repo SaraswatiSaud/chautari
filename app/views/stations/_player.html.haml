@@ -1,5 +1,5 @@
 - if session[:stream].present?
-  - stream = session[:stream].first
+  - stream = session[:stream].first.symbolize_keys!
   - station = Station.find_by(id: stream[:station_id])
   - if station.present?
     #inner
@@ -12,8 +12,9 @@
                 = link_to station.name, station_path(station), remote: true, class: 'text-truncate'
                 #playing_now.small.text-truncate= station.country_name
                 :javascript
-                  // if(typeof playingNow !== 'undefined') { clearInterval(playingNow); }
-                  // playingNow = setInterval(function(){ $.get("#{playing_now_station_path(station)}") }, 20000);
+                  $.get("#{playing_now_station_path(station)}")
+                  if(typeof playingNow !== 'undefined') { clearInterval(playingNow); }
+                  playingNow = setInterval(function(){ $.get("#{playing_now_station_path(station)}") }, 60000);
 
           .col-md-5
             - if stream.present?
