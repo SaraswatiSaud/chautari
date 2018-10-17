@@ -1,4 +1,4 @@
 - css = user_signed_in? && current_user.favorite?(station) ? 'heart' : 'heart-o'
-= link_to favorite[:link], method: favorite[:method], remote: true, class: 'btn btn-block' do
+= link_to favorite[:link], method: favorite[:method], remote: user_signed_in?, class: 'btn btn-block' do
   = fa_icon css
   Favorite
