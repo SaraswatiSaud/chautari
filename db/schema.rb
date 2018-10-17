@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_18_034932) do
+ActiveRecord::Schema.define(version: 2018_10_14_184632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,15 @@ ActiveRecord::Schema.define(version: 2018_08_18_034932) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "station_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["station_id"], name: "index_favorites_on_station_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -158,6 +167,8 @@ ActiveRecord::Schema.define(version: 2018_08_18_034932) do
 
   add_foreign_key "categories_stations", "categories"
   add_foreign_key "categories_stations", "stations"
+  add_foreign_key "favorites", "stations"
+  add_foreign_key "favorites", "users"
   add_foreign_key "stations", "countries"
   add_foreign_key "stations", "languages"
   add_foreign_key "streams", "stations"

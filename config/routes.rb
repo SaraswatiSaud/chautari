@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get '/faq', to: 'static_pages#faq'
   get '/privacy-policy', to: 'static_pages#privacy_policy'
 
+  get '/favorites', to: 'favorites#index'
+
   resources :stations do
     member do
       get 'play'
@@ -24,7 +26,8 @@ Rails.application.routes.draw do
       get 'player_close'
     end
 
-    resources :reviews, only: [:new, :create, :destroy]
+    resources :reviews, only: %i[new create destroy]
+    resources :favorites, only: %i[create destroy]
   end
 
   resources :categories, path: :genres
