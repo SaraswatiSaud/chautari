@@ -1,9 +1,2 @@
-%h1.h2.mb-3.pb-2.font-weight-light.border-bottom Favorite Stations
-- if @favorites.present?
-  .row
-    - @favorites.each do |favorite|
-      = render 'stations/station', station: favorite.station
-  .mx-auto= pagy_nav_bootstrap(@pagy).html_safe
-- else
-  You don't have any favorite stations yet. Click the heart icon on your
-  favorite station's page and all your favorite stations will show on this page.
+- title @title
+= render 'index'

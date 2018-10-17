@@ -20,4 +20,12 @@ class User < ApplicationRecord
   def full_name
     [first_name, last_name].join(' ')
   end
+
+  def favorite?(station)
+    favorite(station).present?
+  end
+
+  def favorite(station)
+    favorites.find_by(station_id: station.id)
+  end
 end

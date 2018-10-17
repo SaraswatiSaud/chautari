@@ -1,4 +1,9 @@
+# frozen_string_literal: true
+
+# Stations Controller
 class StationsController < ApplicationController
+  include Favoritable
+
   before_action :authenticate_admin!, except: [:new, :create, :index, :show, :play, :playing_now, :player_close, :similar, :thankyou]
   before_action :set_station, only: [:show, :edit, :update, :destroy, :play, :similar, :playing_now, :thankyou]
 
@@ -15,14 +20,16 @@ class StationsController < ApplicationController
     stations = Station.order(updated_at: :desc)
 
     # Also display pending stations if admin
-    stations = stations.active unless (user_signed_in? && current_user.is_admin?)
+    stations = stations.active unless user_signed_in? && current_user.is_admin?
     @stations = stations.order(id: :desc).page params[:page]
   end
 
   # GET /stations/1
   # GET /stations/1.json
   def show
-    redirect_to root_path, alert: 'Station not available!' unless @station.active? || (user_signed_in? && current_user.is_admin?)
+    redirect_to root_path, alert: 'Station not available!' unless accessible?
+
+    favorites_button(@station)
     impressionist(@station)
   end
 
@@ -102,8 +109,7 @@ class StationsController < ApplicationController
   end
 
   # Displays thank you page after guest adds a radio station
-  def thankyou
-  end
+  def thankyou; end
 
   private
 
@@ -112,13 +118,18 @@ class StationsController < ApplicationController
     @station = Station.friendly.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  def accessible?
+    @station.active? || (user_signed_in? && current_user.is_admin?)
+  end
+
+  # Never trust parameters from the scary internet,
+  # only allow the white list through.
   def station_params
     params.require(:station).permit(
       :name, :tagline, :description, :country_id, :language_id, :slug, :logo,
       :website, :twitter, :facebook, :address, :contact, :email,
       category_ids: [],
-      streams_attributes: [ :id, :url, :_destroy ]
+      streams_attributes: %i[id url _destroy]
     )
   end
 end

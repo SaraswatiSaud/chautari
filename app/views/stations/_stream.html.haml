@@ -1,8 +1,11 @@
 .row
   - if station.active_streams.any?
     - stream = station.active_streams.first
-    .col-md-2.form-group= link_to 'Play',  play_station_path(station), remote: true, class: 'btn btn-block btn-outline-danger'
-    .col-md-10.form-group
+    .col-lg-2.form-group= link_to 'Play',  play_station_path(station), remote: true, class: 'btn btn-block btn-outline-danger'
+    .col-lg-3.form-group
+      %div{id: "favorite#{station.id}"}= render 'favorites/link', station: station, favorite: @favorites_button
+
+    .col-lg-7.form-group
       #sharethis-inline-share-buttons
 
       - description = station.description || "#{station.name} is a radio station streaming live from #{station.country_name}. Listen to this station and others online at jharko.com."

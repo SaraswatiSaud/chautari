@@ -1,8 +1,8 @@
 .d-flex.flex-column.flex-md-row.align-items-center.p-3.px-md-4.mb-3.bg-white.border-bottom.box-shadow
   %h5.my-0.mr-md-auto.font-weight-normal= link_to 'Jharko', root_path, remote: true, class: 'navbar-brand'
   %nav.my-2.my-md-0.mr-md-3
-    = link_to favorites_path, class: 'p-2 text-dark' do
-      %i.fa.fa-heart
+    = link_to favorites_path, remote: true, class: 'p-2 text-dark' do
+      = fa_icon 'heart'
       My Favorites
     = link_to 'By Genre', categories_path, title: 'Find radio stations by Genre', remote: true, class: 'p-2 text-dark'
     = link_to 'By Country', countries_path, title: 'Find radio stations by Country', remote: true, class: 'p-2 text-dark'
