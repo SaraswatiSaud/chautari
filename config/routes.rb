@@ -33,5 +33,14 @@ Rails.application.routes.draw do
   resources :categories, path: :genres
   devise_for :users, controllers: { registrations: 'registrations' }
 
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :countries, only: %i[index show]
+      resources :languages, only: %i[index show]
+      resources :categories, only: %i[index show]
+      resources :stations, only: %i[index show]
+    end
+  end
+
   root to: 'static_pages#home'
 end
