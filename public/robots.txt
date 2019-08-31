@@ -7,3 +7,6 @@ Disallow: /*/play$
 Disallow: /stations/*/similar$
 Disallow: /users/sign_in$
 Disallow: /users/sign_up$
+
+User-agent: SemrushBot
+Disallow: /
