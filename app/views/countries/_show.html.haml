@@ -17,7 +17,7 @@
             = station_thumb(station)
             = render 'stations/display_rating', station: station
 
-      = pagy_nav_bootstrap(@pagy).html_safe
+      = pagy_bootstrap_nav(@pagy).html_safe
 
     .col-md-4.bg-light.p-3
       %h5.mb-3.pb-2.border-bottom Most Popular in #{@country.name}
