@@ -4,8 +4,8 @@ server '159.65.224.49', roles: [:web, :app, :db], primary: true
 set :repo_url,        'git@github.com:SaraswatiSaud/chautari.git'
 set :application,     'chautari'
 set :user,            'webuser'
-# set :puma_threads,    [4, 16]
-# set :puma_workers,    0
+set :puma_threads,    [4, 16]
+set :puma_workers,    0
 
 # Don't change these unless you know what you're doing
 set :pty,             true
