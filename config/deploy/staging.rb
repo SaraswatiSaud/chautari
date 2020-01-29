@@ -7,7 +7,10 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-
+set :stage,           :staging
+set :deploy_via,      :remote_cache
+set :deploy_to,       "/home/#{fetch(:user)}/stating/#{fetch(:application)}"
+set :branch,          'configure-multiple-apps'
 
 # role-based syntax
 # ==================
