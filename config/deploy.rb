@@ -34,17 +34,17 @@ set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh
 set :linked_files, %w{config/database.yml config/env.yml}
 set :linked_dirs,  %w{public/uploads public/shared}
 
-# namespace :puma do
-#   desc 'Create Directories for Puma Pids and Socket'
-#   task :make_dirs do
-#     on roles(:app) do
-#       execute "mkdir #{shared_path}/tmp/sockets -p"
-#       execute "mkdir #{shared_path}/tmp/pids -p"
-#     end
-#   end
-#
-#   before :start, :make_dirs
-# end
+namespace :puma do
+  desc 'Create Directories for Puma Pids and Socket'
+  task :make_dirs do
+    on roles(:app) do
+      execute "mkdir #{shared_path}/tmp/sockets -p"
+      execute "mkdir #{shared_path}/tmp/pids -p"
+    end
+  end
+
+  before :start, :make_dirs
+end
 
 namespace :deploy do
   # desc "Make sure local git is in sync with remote."
