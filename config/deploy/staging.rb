@@ -9,7 +9,7 @@
 
 set :stage,           :staging
 set :deploy_via,      :remote_cache
-set :deploy_to,       "/home/#{fetch(:user)}/stating/#{fetch(:application)}"
+set :deploy_to,       "/home/#{fetch(:user)}/staging/#{fetch(:application)}"
 set :branch,          'configure-multiple-apps'
 
 # role-based syntax
