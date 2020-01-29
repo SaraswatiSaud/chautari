@@ -32,7 +32,7 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 
 ## Linked Files & Directories (Default None):
 set :linked_files, %w{config/database.yml config/env.yml}
-set :linked_dirs,  %w{tmp/pids tmp/sockets public/uploads public/shared}
+set :linked_dirs,  %w{public/uploads public/shared}
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
